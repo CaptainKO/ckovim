@@ -1,0 +1,46 @@
+"filetype plugin on
+set exrc
+set secure
+" set line numbers
+" set number
+" set relative line numbers
+set  number relativenumber
+" auto switch number and relative number
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+:augroup END
+" use cliboard for copy/past
+set clipboard^=unnamedplus,unnamed
+" no highlight in search mode"
+"set nohlsearch
+
+" vim for coding
+syntax on
+set autochdir
+set encoding=UTF-8
+set noerrorbells
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set nowrap
+set noswapfile
+set nobackup
+set undodir=~/.config/nvim/undodir
+set undofile
+set incsearch
+let g:elite_mode=1
+set termguicolors
+
+"if &compatible
+"  set nocompatible               " Be iMproved
+"endif
+
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+let loaded_matchparen = 1
+let mapleader = " "
+
