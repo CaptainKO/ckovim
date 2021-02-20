@@ -32,8 +32,10 @@ set undodir=~/.config/nvim/undodir
 set undofile
 set incsearch
 let g:elite_mode=1
-set termguicolors
 
+" if exists('+termguicolors')
+"   set termguicolors
+" endif
 "if &compatible
 "  set nocompatible               " Be iMproved
 "endif

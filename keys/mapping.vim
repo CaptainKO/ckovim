@@ -89,12 +89,22 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
 " Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+command! -nargs=? Fold :call   CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 OR   :call   CocAction('runCommand', 'editor.action.organizeImport')
+
+" Tmux
+" if exists('$TMUX')
+"     let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
+"     let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
+" else
+"     let &t_SI = "\e[5 q"
+"     let &t_EI = "\e[2 q"
+" endif
 
 nmap <silent> <C-I> :Format <CR>
 
