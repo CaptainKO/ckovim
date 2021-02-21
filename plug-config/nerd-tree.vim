@@ -16,3 +16,4 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 
 let NERDTreeShowLineNumbers=0
 
+:autocmd FileType nerdtree set norelativenumber

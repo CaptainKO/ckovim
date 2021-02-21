@@ -5,11 +5,13 @@ set secure
 " set number
 " set relative line numbers
 set  number relativenumber
+let ftToIgnore = ['nerdtree']
 " auto switch number and relative number
+
 :augroup numbertoggle
 :  autocmd!
-:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+:  autocmd BufEnter,FocusGained,InsertLeave * if index(ftToIgnore,&ft) < 0 | set relativenumber
+:  autocmd BufLeave,FocusLost,InsertEnter   * if index(ftToIgnore,&ft) < 0 | set norelativenumber
 :augroup END
 " use cliboard for copy/past
 set clipboard^=unnamedplus,unnamed
