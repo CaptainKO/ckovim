@@ -96,17 +96,11 @@ command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call   CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call   CocAction('runCommand', 'editor.action.organizeImport')
-
-" Tmux
-" if exists('$TMUX')
-"     let &t_SI = "\<Esc>Ptmux;\<Esc>\e[5 q\<Esc>\\"
-"     let &t_EI = "\<Esc>Ptmux;\<Esc>\e[2 q\<Esc>\\"
-" else
-"     let &t_SI = "\e[5 q"
-"     let &t_EI = "\e[2 q"
-" endif
-
+" comment like vscode
 nmap <silent> <C-I> :Format <CR>
+
+" UndoTree
+nnoremap <F5> :UndotreeToggle<CR>
 
 fun! TrimWhitespace()
     let l:save = winsaveview()

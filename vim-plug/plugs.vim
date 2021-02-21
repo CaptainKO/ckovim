@@ -6,11 +6,19 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         "Plug 'machakann/vim-highlightedyank'
    else
         " Utility
-        "
+
+        " Starter for choose recent projects
+        Plug 'mhinz/vim-startify'
+        " Change Root
+        Plug 'airblade/vim-rooter'
         " Footer
         Plug 'itchyny/lightline.vim'
         " Better comments
         Plug 'tpope/vim-commentary'
+        " Surround
+        Plug 'tpope/vim-surround'
+        " Undo tree
+        Plug 'mbbill/undotree'
         " Change dates fast
         Plug 'tpope/vim-speeddating'
         " Text navigation
@@ -29,9 +37,14 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         Plug 'sheerun/vim-polyglot'
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+        " Frontend
+        " html
+        Plug 'othree/html5.vim'
+
         " Git Support
         Plug 'tpope/vim-fugitive'
         Plug 'gisphm/vim-gitignore'
+        Plug 'airblade/vim-gitgutter'
 
 
         " Vim Nerd Tree Git
@@ -45,7 +58,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         "Plug 'tweekmonster/gofmt.vim'
         "Plug 'tpope/vim-fugitive'
         "Plug 'vim-utils/vim-man'
-        "Plug 'mbbill/undotree'
         "Plug 'sheerun/vim-polyglot'
         "Plug 'vuciv/vim-bujo'
         "Plug 'leafgarland/typescript-vim'
