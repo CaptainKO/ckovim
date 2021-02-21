@@ -5,7 +5,7 @@ set secure
 " set number
 " set relative line numbers
 set  number relativenumber
-let ftToIgnore = ['nerdtree']
+let ftToIgnore = ['nerdtree', 'fzf']
 " auto switch number and relative number
 
 :augroup numbertoggle
