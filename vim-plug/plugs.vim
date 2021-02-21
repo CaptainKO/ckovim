@@ -11,8 +11,10 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         Plug 'mhinz/vim-startify'
         " Change Root
         Plug 'airblade/vim-rooter'
+        " Status/tabline
+        Plug 'vim-airline/vim-airline'
         " Footer
-        Plug 'itchyny/lightline.vim'
+        " Plug 'itchyny/lightline.vim'
         " Better comments
         Plug 'tpope/vim-commentary'
         " Surround
@@ -45,6 +47,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         " Modifies tags
         Plug 'AndrewRadev/tagalong.vim'
 
+        " Typescript
+        " Syntax supports
+        Plug 'HerringtonDarkholme/yats.vim'
         " Git Support
         Plug 'tpope/vim-fugitive'
         Plug 'gisphm/vim-gitignore'
