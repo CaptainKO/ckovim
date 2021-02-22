@@ -16,7 +16,7 @@ let ftToIgnore = ['nerdtree', 'fzf']
 " use cliboard for copy/past
 set clipboard^=unnamedplus,unnamed
 " no highlight in search mode"
-"set nohlsearch
+set nohlsearch
 
 " vim for coding
 syntax on
