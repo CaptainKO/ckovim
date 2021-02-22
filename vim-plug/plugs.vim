@@ -23,6 +23,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         Plug 'mbbill/undotree'
         " Change dates fast
         Plug 'tpope/vim-speeddating'
+        " Icons
+        Plug 'ryanoasis/vim-devicons'
         " Text navigation
         "Plug 'unblevable/quick-scope'
         "Plug 'majutsushi/tagbar'
@@ -54,10 +56,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         Plug 'tpope/vim-fugitive'
         Plug 'gisphm/vim-gitignore'
         Plug 'airblade/vim-gitgutter'
-
-
-        " Vim Nerd Tree Git
-        Plug 'ryanoasis/vim-devicons'
+        Plug 'stsewd/fzf-checkout.vim'
 
         "Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 

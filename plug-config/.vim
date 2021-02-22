@@ -5,6 +5,10 @@ if !exists('g:vscode')
         source $HOME/.config/nvim/plug-config/nerd-tree.vim
     endif
 
+    if (PlugLoaded('fzf.vim'))
+        source $HOME/.config/nvim/plug-config/fzf.vim
+    endif
+
     if (PlugLoaded('vim-polyglot'))
         source $HOME/.config/nvim/plug-config/polyglot.vim
     endif

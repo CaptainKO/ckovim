@@ -55,6 +55,8 @@ vnoremap <leader>P "+P
 nmap <leader>gh :diffget //3<CR>
 nmap <leader>gu :diffget //2<CR>
 nmap <leader>gs :G<CR>
+nmap <leader>gp :G push<CR>
+nnoremap <leader>gc :GBranches<CR>
 
 " Neard tree
 nnoremap <leader>n :NERDTreeFocus<CR>

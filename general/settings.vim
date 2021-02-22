@@ -13,6 +13,7 @@ let ftToIgnore = ['nerdtree', 'fzf']
 :  autocmd BufEnter,FocusGained,InsertLeave * if index(ftToIgnore,&ft) < 0 | set relativenumber
 :  autocmd BufLeave,FocusLost,InsertEnter   * if index(ftToIgnore,&ft) < 0 | set norelativenumber
 :augroup END
+
 " use cliboard for copy/past
 set clipboard^=unnamedplus,unnamed
 " no highlight in search mode"
@@ -22,16 +23,19 @@ set nohlsearch
 syntax on
 set autochdir
 set encoding=UTF-8
+set hidden
 set noerrorbells
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
+set ignorecase
+set smartcase
 set nowrap
 set noswapfile
 set nobackup
-set undodir=~/.config/nvim/undodir
-set undofile
+" set undodir=~/.config/nvim/undodir
+" set undofile
 set incsearch
 let g:elite_mode=1
 
