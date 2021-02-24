@@ -38,6 +38,10 @@ nmap <leader>g] <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
 nnoremap <leader>cr :CocRestart
+" Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Copy to clipboard
 vnoremap  <leader>y  "+y
@@ -68,8 +72,10 @@ map <C-_> gcc
 " CocCo
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
+augroup holde_cursor_highlight
+    autocmd!
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup END
 " Symbol renaming.
 nmap <F2> <Plug>(coc-rename)
 
