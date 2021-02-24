@@ -121,5 +121,8 @@ augroup highlight_yank
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank("IncSearch", 50)
 augroup END
 
-autocmd BufWritePre * :call TrimWhitespace()
+augroup trim_white_space
+    autocmd!
+    autocmd BufWritePre * :call TrimWhitespace()
+augroup END
 
