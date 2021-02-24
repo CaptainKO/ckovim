@@ -37,6 +37,7 @@ set nobackup
 " set undodir=~/.config/nvim/undodir
 " set undofile
 set incsearch
+set scrolloff=8
 let g:elite_mode=1
 
 " if exists('+termguicolors')

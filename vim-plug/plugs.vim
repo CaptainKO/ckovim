@@ -38,9 +38,12 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         Plug 'jiangmiao/auto-pairs'
         " Programming
         " Syntax highlighting
+        let g:polyglot_disabled = ['graphql']
         Plug 'sheerun/vim-polyglot'
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+        " Autocomplete
+        " Plug 'valloric/youcompleteme'
         " Frontend
         " html
         Plug 'othree/html5.vim'
@@ -51,7 +54,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
         " Typescript
         " Syntax supports
-        Plug 'HerringtonDarkholme/yats.vim'
+        " Plug 'HerringtonDarkholme/yats.vim'
         " Git Support
         Plug 'tpope/vim-fugitive'
         Plug 'gisphm/vim-gitignore'
