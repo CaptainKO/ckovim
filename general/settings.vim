@@ -4,7 +4,8 @@ set secure
 " set line numbers
 " set number
 " set relative line numbers
-set  number relativenumber
+set cursorline
+set number relativenumber
 let ftToIgnore = ['nerdtree', 'fzf']
 " auto switch number and relative number
 

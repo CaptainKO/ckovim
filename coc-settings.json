@@ -3,7 +3,8 @@
   "python.linting.enabled": true,
   "python.formatting.provider": "yapf",
   "python.formatting.yapfPath": "~/.local/bin/yapf",
-  "coc.preferences.formatOnSaveFiletypes": ["python"]
+  "coc.preferences.formatOnSaveFiletypes": ["python"],
+  "html.format.wrapAttributes": "force-aligned"
   /* "suggest.completionItemKindLabels": { */
   /*   "variable": "\ufa88", */
   /*   "constant": "\uf8ff", */

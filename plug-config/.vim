@@ -29,6 +29,10 @@ if !exists('g:vscode')
         source $HOME/.config/nvim/plug-config/emmet.vim
     endif
 
+    if(PlugLoaded('startify'))
+        source $HOME/.config/nvim/plug-config/startify.vim
+    endif
+
 
 endif
 

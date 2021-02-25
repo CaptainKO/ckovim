@@ -6,7 +6,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         "Plug 'machakann/vim-highlightedyank'
    else
         " Utility
-
+        " Editor config
+        Plug 'editorconfig/editorconfig-vim'
         " Starter for choose recent projects
         Plug 'mhinz/vim-startify'
         " Change Root
@@ -38,10 +39,12 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         Plug 'jiangmiao/auto-pairs'
         " Programming
         " Syntax highlighting
-        let g:polyglot_disabled = ['graphql']
-        Plug 'sheerun/vim-polyglot'
+        " let g:polyglot_disabled = ['graphql', 'typescript', 'javascript']
+        " Plug 'sheerun/vim-polyglot'
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+        " Formatter
+        " Plug 'maksimr/vim-jsbeautify'
         " Autocomplete
         " Plug 'valloric/youcompleteme'
         " Frontend
@@ -51,8 +54,12 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         Plug 'mattn/emmet-vim'
         " Modifies tags
         Plug 'AndrewRadev/tagalong.vim'
-
+        " Javascript
+        " Plug 'pangloss/vim-javascript'
         " Typescript
+        " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+        Plug 'leafgarland/typescript-vim'
+        " Plug 'peitalin/vim-jsx-typescript'
         " Syntax supports
         " Plug 'HerringtonDarkholme/yats.vim'
         " Git Support
@@ -60,12 +67,16 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         Plug 'gisphm/vim-gitignore'
         Plug 'airblade/vim-gitgutter'
         Plug 'stsewd/fzf-checkout.vim'
-
+        " Plug 'nvim-lua/popup.nvim'
+        " Plug 'nvim-lua/plenary.nvim'
+        " Plug 'nvim-telescope/telescope.nvim'
         "Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 
 
         " Theme
         Plug 'dracula/vim', { 'as': 'dracula' }
+        " Plug 'rktjmp/lush.nvim' " required
+        " Plug 'npxbr/gruvbox.nvim'
         "Plug 'tweekmonster/gofmt.vim'
         "Plug 'tpope/vim-fugitive'
         "Plug 'vim-utils/vim-man'

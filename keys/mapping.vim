@@ -16,6 +16,7 @@ nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <Leader>ps :Rg<SPACE>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
+" nnoremap <Leader>pcf :Files <C-R>=expand=('%:h')<CR><CR>
 nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
 nnoremap <Leader>= :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
@@ -37,7 +38,7 @@ nmap <leader>g[ <Plug>(coc-diagnostic-prev)
 nmap <leader>g] <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
 nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
-nnoremap <leader>cr :CocRestart
+nnoremap <leader>cr :CocRestart<CR>
 " Remap keys for applying codeAction to the current line.
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
@@ -70,7 +71,14 @@ map <C-n> :NERDTreeToggle<CR>
 map <C-_> gcc
 
 " CocCo
-
+" beautify
+augroup  js_beautify
+    autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
+    autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
+    autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
+    autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+    autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+augroup END
 " Highlight the symbol and its references when holding the cursor.
 augroup holde_cursor_highlight
     autocmd!
@@ -105,7 +113,7 @@ command! -nargs=? Fold :call   CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call   CocAction('runCommand', 'editor.action.organizeImport')
 " comment like vscode
-nmap <silent> <C-I> :Format <CR>
+nmap <silent> <C-S-i> :Format <CR>
 
 " UndoTree
 nnoremap <F5> :UndotreeToggle<CR>
