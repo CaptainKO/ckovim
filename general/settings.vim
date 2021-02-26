@@ -9,11 +9,12 @@ set number relativenumber
 let ftToIgnore = ['nerdtree', 'fzf']
 " auto switch number and relative number
 
-:augroup numbertoggle
-:  autocmd!
-:  autocmd BufEnter,FocusGained,InsertLeave * if index(ftToIgnore,&ft) < 0 | set relativenumber
-:  autocmd BufLeave,FocusLost,InsertEnter   * if index(ftToIgnore,&ft) < 0 | set norelativenumber
-:augroup END
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * if index(ftToIgnore, &ft) <0 | set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * if index(ftToIgnore, &ft) <0 | set norelativenumber
+augroup END
+
 
 " use cliboard for copy/past
 set clipboard^=unnamedplus,unnamed
@@ -44,9 +45,9 @@ let g:elite_mode=1
 " if exists('+termguicolors')
 "   set termguicolors
 " endif
-"if &compatible
-"  set nocompatible               " Be iMproved
-"endif
+if &compatible
+  set nocompatible               " Be iMproved
+endif
 
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey

@@ -1,4 +1,6 @@
 call plug#begin('~/.config/nvim/autoload/plugged')
+        " Quickly navigate in buffer
+        Plug 'easymotion/vim-easymotion'
    if exists('g:vscode')
         " Easy motion for VSCode
         " Plug 'asvetliakov/vim-easymotion'
@@ -44,6 +46,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
         " Formatter
+        Plug 'sbdchd/neoformat'
         " Plug 'maksimr/vim-jsbeautify'
         " Autocomplete
         " Plug 'valloric/youcompleteme'
@@ -57,7 +60,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         " Javascript
         " Plug 'pangloss/vim-javascript'
         " Typescript
-        " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+        Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
         Plug 'leafgarland/typescript-vim'
         " Plug 'peitalin/vim-jsx-typescript'
         " Syntax supports
@@ -76,7 +79,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         " Theme
         Plug 'dracula/vim', { 'as': 'dracula' }
         " Plug 'rktjmp/lush.nvim' " required
-        " Plug 'npxbr/gruvbox.nvim'
         "Plug 'tweekmonster/gofmt.vim'
         "Plug 'tpope/vim-fugitive'
         "Plug 'vim-utils/vim-man'

@@ -1,6 +1,10 @@
 source $HOME/.config/nvim/plug-config/coc.vim
 
 if !exists('g:vscode')
+    if (PlugLoaded('vim-airline'))
+        source $HOME/.config/nvim/plug-config/airline.vim
+    endif
+
     if (PlugLoaded('nerdtree'))
         source $HOME/.config/nvim/plug-config/nerd-tree.vim
     endif
@@ -31,6 +35,10 @@ if !exists('g:vscode')
 
     if(PlugLoaded('startify'))
         source $HOME/.config/nvim/plug-config/startify.vim
+    endif
+
+    if(PlugLoaded('vim-easymotion'))
+        source $HOME/.config/nvim/plug-config/easymotion.vim
     endif
 
 

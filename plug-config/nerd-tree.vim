@@ -1,6 +1,6 @@
 let g:NERDTreeChDirMode = 2
 let g:NERDTreeGitStatusUseNerdFonts = 1
-"let g:NERDTreeGitStatusConcealBrackets = 1
+let g:NERDTreeGitStatusConcealBrackets = 0
 let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Modified'  :'✹',
                 \ 'Staged'    :'✚',
