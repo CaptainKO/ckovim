@@ -8,6 +8,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         "Plug 'machakann/vim-highlightedyank'
    else
         " Utility
+        " Auto indent
+        Plug 'tpope/vim-sleuth'
         " Editor config
         Plug 'editorconfig/editorconfig-vim'
         " Starter for choose recent projects
@@ -32,10 +34,11 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         "Plug 'unblevable/quick-scope'
         "Plug 'majutsushi/tagbar'
         Plug 'preservim/nerdtree' |
-            \ Plug 'Xuyuanp/nerdtree-git-plugin'
+            \ Plug 'Xuyuanp/nerdtree-git-plugin' |
+            \ Plug 'scrooloose/nerdtree-project-plugin'
 
         Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-        Plug 'junegunn/fzf.vim'
+        " Plug 'junegunn/fzf.vim'
         Plug 'tpope/vim-dispatch'
         "Auto pairs for '(' '[' '{'
         Plug 'jiangmiao/auto-pairs'
@@ -70,9 +73,11 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         Plug 'gisphm/vim-gitignore'
         Plug 'airblade/vim-gitgutter'
         Plug 'stsewd/fzf-checkout.vim'
-        " Plug 'nvim-lua/popup.nvim'
-        " Plug 'nvim-lua/plenary.nvim'
-        " Plug 'nvim-telescope/telescope.nvim'
+
+        Plug 'nvim-lua/popup.nvim'
+        Plug 'nvim-lua/plenary.nvim'
+        Plug 'nvim-telescope/telescope.nvim'  |
+           \ Plug 'nvim-telescope/telescope-media-files.nvim'
         "Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 
 

@@ -16,14 +16,20 @@ nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <Leader>ps :Rg<SPACE>
 nnoremap <C-p> :GFiles<CR>
 nnoremap <Leader>pf :Files<CR>
-" nnoremap <Leader>pcf :Files <C-R>=expand=('%:h')<CR><CR>
+nnoremap <Leader><C-p> :History<CR>
+nnoremap <Leader>pcf :Files <C-R>=expand('%:h')<CR><CR>
 nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
+nnoremap <Leader><C-h> :sp<CR> :wincmd j <CR>
+nnoremap <Leader><C-v> :vsp<CR> :wincmd l <CR>
 nnoremap <Leader>= :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
-nnoremap <Leader>rp :resize 100<CR>
-nnoremap <Leader>ee oif err != nil {<CR>log.Fatalf("%+v\n", err)<CR>}<CR><esc>kkI<esc>
+nmap <leader><C-j> :tabprevious<CR>
+nmap <leader><C-k> :tabnext<CR>
+noremap <Leader>rp :resize 100<CR>
+" nnoremap <Leader>ee oif err != nil {<CR>log.Fatalf("%+v\n", err)<CR>}<CR><esc>kkI<esc>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 inoremap <silent><expr> <C-space> coc#refresh()
@@ -34,10 +40,14 @@ nmap <leader>gy <Plug>(coc-type-definition)
 nmap <leader>gi <Plug>(coc-implementation)
 nmap <leader>gr <Plug>(coc-references)
 nmap <leader>rr <Plug>(coc-rename)
+nmap <leader>e[ <Plug>(coc-diagnostic-prev-error)
+nmap <leader>e] <Plug>(coc-diagnostic-next-error)
 nmap <leader>g[ <Plug>(coc-diagnostic-prev)
 nmap <leader>g] <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
-nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
+" nmap <leader>g[ <Plug>(coc-diagnostic-prev)
+" nmap <leader>g] <Plug>(coc-diagnostic-next)
+" nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
+" nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
 nnoremap <leader>cr :CocRestart<CR>
 " Remap keys for applying codeAction to the current line.
 nmap <leader>ac  <Plug>(coc-codeaction)
@@ -73,6 +83,7 @@ map <C-_> gcc
 " CocCo
 " beautify
 augroup  js_beautify
+    autocmd!
     autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
     autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
     autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
@@ -88,6 +99,7 @@ augroup END
 nmap <F2> <Plug>(coc-rename)
 
 " Formatting selected code.
+nnoremap <leader><C-i> :Format<CR>
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
@@ -101,10 +113,10 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent>gd <Plug>(coc-definition)
+nmap <silent>gy <Plug>(coc-type-definition)
+nmap <silent>gi <Plug>(coc-implementation)
+nmap <silent>gr <Plug>(coc-references)
 
 " fzf
 nnoremap <silent><leader><leader>T :Buffers<CR>
@@ -115,8 +127,15 @@ command! -nargs=? Fold :call   CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call   CocAction('runCommand', 'editor.action.organizeImport')
 " comment like vscode
-nmap <silent> <C-S-i> :Format <CR>
+nmap <silent><leader><C-i> :Format <CR>
 
+" Telescope
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<CR>
+nnoremap <C-p> <cmd>lua require('telescope.builtin').git_files()<CR>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<CR>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<CR>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<CR>
+nnoremap <leader>fm <cmd>lua require('telescope').extensions.media_files.media_files()<CR>
 " UndoTree
 nnoremap <F5> :UndotreeToggle<CR>
 
@@ -136,3 +155,25 @@ augroup trim_white_space
     autocmd BufWritePre * :call TrimWhitespace()
 augroup END
 
+" Swap functions
+function! MarkWindowSwap()
+    let g:markedWinNum = winnr()
+endfunction
+
+function! DoWindowSwap()
+    "Mark destination
+    let curNum = winnr()
+    let curBuf = bufnr( "%" )
+    exe g:markedWinNum . "wincmd w"
+    "Switch to source and shuffle dest->source
+    let markedBuf = bufnr( "%" )
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' curBuf
+    "Switch to dest and shuffle source->dest
+    exe curNum . "wincmd w"
+    "Hide and open so that we aren't prompted and keep history
+    exe 'hide buf' markedBuf
+endfunction
+
+nmap <silent> <leader>wm :call MarkWindowSwap()<CR>
+nmap <silent> <leader>ws :call DoWindowSwap()<CR>

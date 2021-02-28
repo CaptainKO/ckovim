@@ -14,8 +14,10 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Unknown'   :'?',
                 \ }
 
-let NERDTreeShowLineNumbers=0
+let g:NERDTreeShowLineNumbers=0
+let g:NERDTreeWinPos='right'
+let g:NERDTreeWinSize=40
 
-:autocmd FileType nerdtree set norelativenumber
+
 " autocmd BufEnter * if &modifiable | NERDTreeFind | wincmd p | endif
-" autocmd vimenter * silent! lcd %:p:h
+"autocmd vimenter * silent! lcd %:p:h

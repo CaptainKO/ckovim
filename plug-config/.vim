@@ -41,6 +41,10 @@ if !exists('g:vscode')
         source $HOME/.config/nvim/plug-config/easymotion.vim
     endif
 
+    if(PlugLoaded('telescope.nvim'))
+        source $HOME/.config/nvim/plug-config/telescope.vim
+    endif
+
 
 endif
 

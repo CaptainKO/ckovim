@@ -1,10 +1,11 @@
 "filetype plugin on
 set exrc
 set secure
+" set regexpengine=1
 " set line numbers
 " set number
 " set relative line numbers
-set cursorline
+" set cursorline
 set number relativenumber
 let ftToIgnore = ['nerdtree', 'fzf']
 " auto switch number and relative number
@@ -23,12 +24,12 @@ set nohlsearch
 
 " vim for coding
 syntax on
-set autochdir
+" set autochdir
 set encoding=UTF-8
 set hidden
 set noerrorbells
-set tabstop=4 softtabstop=4
-set shiftwidth=4
+" set tabstop=4 softtabstop=4
+" set shiftwidth=4
 set expandtab
 set smartindent
 set ignorecase
