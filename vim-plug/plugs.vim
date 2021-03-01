@@ -38,7 +38,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
             \ Plug 'scrooloose/nerdtree-project-plugin'
 
         Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-        " Plug 'junegunn/fzf.vim'
+        Plug 'junegunn/fzf.vim'
         Plug 'tpope/vim-dispatch'
         "Auto pairs for '(' '[' '{'
         Plug 'jiangmiao/auto-pairs'
@@ -83,6 +83,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
         " Theme
         Plug 'dracula/vim', { 'as': 'dracula' }
+        Plug 'gruvbox-community/gruvbox'
         " Plug 'rktjmp/lush.nvim' " required
         "Plug 'tweekmonster/gofmt.vim'
         "Plug 'tpope/vim-fugitive'

@@ -1,5 +1,5 @@
 " replace all is aliased to
-nnoremap S :%s//g<Left><Left>
+" nnoremap S :%s//g<Left><Left>
 """""""""""""""""""""""""""""""""""""
 " Mappings configurationn
 """""""""""""""""""""""""""""""""""""
@@ -29,6 +29,7 @@ noremap <Leader>rp :resize 100<CR>
 " nnoremap <Leader>ee oif err != nil {<CR>log.Fatalf("%+v\n", err)<CR>}<CR><esc>kkI<esc>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+nnoremap <silent> <leader>zq :bd<CR>
 
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
@@ -71,7 +72,7 @@ nmap <leader>gj :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
 nmap <leader>gs :G<CR>
 nmap <leader>gp :G push<CR>
-nnoremap <leader>gc :GBranches<CR>
+nnoremap <leader>gb :GBranches<CR>
 
 " Neard tree
 nnoremap <leader>n :NERDTreeFocus<CR>
@@ -119,6 +120,7 @@ nmap <silent>gi <Plug>(coc-implementation)
 nmap <silent>gr <Plug>(coc-references)
 
 " fzf
+nnoremap <C-p> :GFiles<CR>
 nnoremap <silent><leader><leader>T :Buffers<CR>
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
@@ -131,8 +133,8 @@ nmap <silent><leader><C-i> :Format <CR>
 
 " Telescope
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<CR>
-nnoremap <C-p> <cmd>lua require('telescope.builtin').git_files()<CR>
-nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<CR>
+" nnoremap <C-p> <cmd>lua require('telescope.builtin').git_files()<CR>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').grep_string()<CR>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<CR>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<CR>
 nnoremap <leader>fm <cmd>lua require('telescope').extensions.media_files.media_files()<CR>
