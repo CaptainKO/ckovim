@@ -64,7 +64,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         " Plug 'pangloss/vim-javascript'
         " Typescript
         Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-        Plug 'leafgarland/typescript-vim'
+        " Plug 'leafgarland/typescript-vim'
         " Plug 'peitalin/vim-jsx-typescript'
         " Syntax supports
         " Plug 'HerringtonDarkholme/yats.vim'
