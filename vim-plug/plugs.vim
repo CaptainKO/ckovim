@@ -29,7 +29,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         " Change dates fast
         Plug 'tpope/vim-speeddating'
         " Icons
-        Plug 'ryanoasis/vim-devicons'
+        " Plug 'ryanoasis/vim-devicons'
+        Plug 'kyazdani42/nvim-web-devicons'
         " Text navigation
         "Plug 'unblevable/quick-scope'
         "Plug 'majutsushi/tagbar'
