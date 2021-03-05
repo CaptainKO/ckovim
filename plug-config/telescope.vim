@@ -1,5 +1,4 @@
 lua << EOF
-require('telescope').load_extension('media_files')
 local actions = require('telescope.actions')
     require('telescope').setup({
        defaults = {
@@ -24,4 +23,7 @@ local actions = require('telescope.actions')
             },
       },
     })
+
+require('telescope').load_extension('fzy_native')
+require('telescope').load_extension('media_files')
 EOF

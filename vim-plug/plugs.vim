@@ -10,6 +10,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         " Utility
         " Auto indent
         Plug 'tpope/vim-sleuth'
+        " sugar syntax for file editing
+        Plug 'tpope/vim-eunuch'
         " Editor config
         Plug 'editorconfig/editorconfig-vim'
         " Starter for choose recent projects
@@ -70,7 +72,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         " Syntax supports
         " Plug 'HerringtonDarkholme/yats.vim'
         " Git Support
-        Plug 'tpope/vim-fugitive'
+        Plug 'tpope/vim-fugitive' |
+            \ Plug 'rbong/vim-flog'
+
         Plug 'gisphm/vim-gitignore'
         Plug 'airblade/vim-gitgutter'
         Plug 'stsewd/fzf-checkout.vim'
@@ -78,7 +82,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         Plug 'nvim-lua/popup.nvim'
         Plug 'nvim-lua/plenary.nvim'
         Plug 'nvim-telescope/telescope.nvim'  |
-           \ Plug 'nvim-telescope/telescope-media-files.nvim'
+           \ Plug 'nvim-telescope/telescope-media-files.nvim' |
+           \ Plug 'nvim-telescope/telescope-fzy-native.nvim'
         "Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 
 

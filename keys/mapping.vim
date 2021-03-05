@@ -1,5 +1,6 @@
 " replace all is aliased to
-" nnoremap S :%s//g<Left><Left>
+nnoremap <leader>ss :%s//g<Left><Left>
+nnoremap <leader>S yiw:%s/\<<C-r>"\>//g<left><left>
 """""""""""""""""""""""""""""""""""""
 " Mappings configurationn
 """""""""""""""""""""""""""""""""""""
@@ -107,17 +108,6 @@ nmap <leader>f  <Plug>(coc-format-selected)
 "Navigation by Tab
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-
-" inoremap <silent><expr> <TAB>
-"             \ pumvisible() ? "\<C-n>" :
-"             \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-"             \ <SID>check_back_space() ? "\<TAB>" :
-"             \ coc#refresh()
-" function! s:check_back_space() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
 
 " let g:coc_snippet_next = '<tab>'
 " Use `[g` and `]g` to navigate diagnostics
