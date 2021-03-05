@@ -1,16 +1,18 @@
 local actions = require('telescope.actions')
+local sorters =require('telescope.sorters')
+local previewers = require('telescope.previewers').vim
 require('telescope').setup {
     defaults = {
         prompt_position = 'top',
         sorting_strategy = "ascending",
         file_ignore_patterns = {"node_modules"},
-        file_sorter = require('telescope.sorters').get_fzy_sorter,
+        file_sorter = sorters.get_fzy_sorter,
         prompt_prefix = ' >',
         color_devicons = true,
 
-        file_previewer   = require('telescope.previewers').vim_buffer_cat.new,
-        grep_previewer   = require('telescope.previewers').vim_buffer_vimgrep.new,
-        qflist_previewer = require('telescope.previewers').vim_buffer_qflist.new,
+        file_previewer   = previewers.buffer_cat.new,
+        grep_previewer   = previewers.vim_buffer_vimgrep.new,
+        qflist_previewer = previewers.vim_buffer_qflist.new,
 
         mappings = {
             i = {
