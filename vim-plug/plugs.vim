@@ -8,6 +8,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         "Plug 'machakann/vim-highlightedyank'
    else
         " Utility
+        " Tmux
+        Plug 'christoomey/vim-tmux-navigator'
         " Auto indent
         Plug 'tpope/vim-sleuth'
         " sugar syntax for file editing

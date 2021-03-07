@@ -106,10 +106,21 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 "Navigation by Tab
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" let g:coc_snippet_next = '<tab>'
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -135,6 +146,7 @@ nmap <silent><leader><C-i> :Format <CR>
 " Telescope
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<CR>
 nnoremap <C-p> <cmd>lua require('telescope.builtin').git_files()<CR>
+nnoremap <leader>fc <cmd>lua require('cko.telescope').search_current_folders()<CR>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').grep_string()<CR>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<CR>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<CR>

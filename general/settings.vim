@@ -1,6 +1,7 @@
 "filetype plugin on
 set exrc
 set secure
+set mouse=a
 " set regexpengine=1
 " set line numbers
 " set number

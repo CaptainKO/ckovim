@@ -10,7 +10,7 @@
     "typescript"
   ],
   "html.format.wrapAttributes": "force-aligned",
-  "Lua.hover.previewFields": 1000,
+  "Lua.hover.previewFields": 10000,
   "prettier.disableLanguages": ["vue", "html", "typescript", "javascript"],
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": true,
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": false,

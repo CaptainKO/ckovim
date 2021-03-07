@@ -1,6 +1,7 @@
 local actions = require('telescope.actions')
 local sorters =require('telescope.sorters')
-local previewers = require('telescope.previewers').vim
+local previewers = require('telescope.previewers')
+
 require('telescope').setup {
     defaults = {
         prompt_position = 'top',
@@ -10,7 +11,7 @@ require('telescope').setup {
         prompt_prefix = ' >',
         color_devicons = true,
 
-        file_previewer   = previewers.buffer_cat.new,
+        file_previewer   = previewers.vim_buffer_cat.new,
         grep_previewer   = previewers.vim_buffer_vimgrep.new,
         qflist_previewer = previewers.vim_buffer_qflist.new,
 
@@ -37,3 +38,13 @@ require('telescope').setup {
 
 require('telescope').load_extension('fzy_native')
 require('telescope').load_extension('media_files')
+
+local M = {}
+M.search_current_folders = function()
+    require('telescope.builtin').find_files({
+        prompt_title = "Current Folder",
+        cwd = "./"
+    })
+end
+
+return M
