@@ -1,2 +1,2 @@
-nnoremap <buffer> <leader>zz :e %<.ts<CR>
-nnoremap <buffer> <leader>zc :e %<.scss<CR>
+nnoremap <buffer> <leader>zz :find %<.ts<CR>
+nnoremap <buffer> <leader>zc :find %<.scss<CR>

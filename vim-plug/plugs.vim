@@ -61,6 +61,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         " Frontend
         " html
         Plug 'othree/html5.vim'
+        Plug  'Valloric/MatchTagAlways'
         " Quick type html
         Plug 'mattn/emmet-vim'
         " Modifies tags
