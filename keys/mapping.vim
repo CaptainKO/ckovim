@@ -8,10 +8,10 @@ nnoremap <leader>S yiw:%s/\<<C-r>"\>//g<left><left>
 nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>phw :h <C-R>=expand("<cword>")<CR><CR>
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
+nnoremap <silent> <leader>h :wincmd h<CR>
+nnoremap <silent><leader>j :wincmd j<CR>
+nnoremap <silent><leader>k :wincmd k<CR>
+nnoremap <silent><leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <Leader>ps :Rg<SPACE>
@@ -159,13 +159,14 @@ nmap <silent><leader><C-i> :Format <CR>
 " Telescope
 nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<CR>
 nnoremap <C-p> <cmd>lua require('telescope.builtin').git_files()<CR>
+nnoremap <leader>fo <cmd>lua require('telescope.builtin').oldfiles()<CR>
 nnoremap <leader>fc <cmd>lua require('cko.telescope').search_current_folders()<CR>
 nnoremap <leader>fg <cmd>lua require('telescope.builtin').grep_string()<CR>
 nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<CR>
 nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<CR>
 nnoremap <leader>fm <cmd>lua require('telescope').extensions.media_files.media_files()<CR>
 " UndoTree
-nnoremap <F5> :UndotreeToggle<CR>
+" nnoremap <F5> :UndotreeToggle<CR>
 
 fun! TrimWhitespace()
     let l:save = winsaveview()

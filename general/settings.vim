@@ -52,7 +52,7 @@ if &compatible
 endif
 
 set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
+" highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 let loaded_matchparen = 1
 let mapleader = " "

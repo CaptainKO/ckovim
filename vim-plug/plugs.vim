@@ -9,7 +9,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
    else
         " Utility
         " Tmux
-        Plug 'christoomey/vim-tmux-navigator'
+        " Plug 'christoomey/vim-tmux-navigator'
         " Auto indent
         Plug 'tpope/vim-sleuth'
         " sugar syntax for file editing
@@ -53,6 +53,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         " Plug 'sheerun/vim-polyglot'
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+        " Document Generators
+        Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+
         " Formatter
         Plug 'sbdchd/neoformat'
         " Plug 'maksimr/vim-jsbeautify'
@@ -88,11 +91,15 @@ call plug#begin('~/.config/nvim/autoload/plugged')
            \ Plug 'nvim-telescope/telescope-media-files.nvim' |
            \ Plug 'nvim-telescope/telescope-fzy-native.nvim'
         "Plug 'vwxyutarooo/nerdtree-devicons-syntax'
-
+        Plug 'puremourning/vimspector'
 
         " Theme
         Plug 'dracula/vim', { 'as': 'dracula' }
         Plug 'gruvbox-community/gruvbox'
+        " Plug 'sainnhe/gruvbox-material'
+
+        " Tutorials
+        Plug 'ThePrimeagen/vim-be-good'
         " Plug 'rktjmp/lush.nvim' " required
         "Plug 'tweekmonster/gofmt.vim'
         "Plug 'tpope/vim-fugitive'
