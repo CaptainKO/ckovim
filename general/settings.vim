@@ -2,6 +2,8 @@
 set exrc
 set secure
 set mouse=a
+"add underscore as keyword seperators
+"set iskeyword-=_
 " set regexpengine=1
 " set line numbers
 " set number

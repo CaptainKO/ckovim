@@ -4,8 +4,7 @@ nnoremap <leader>S yiw:%s/\<<C-r>"\>//g<left><left>
 """""""""""""""""""""""""""""""""""""
 " Mappings configurationn
 """""""""""""""""""""""""""""""""""""
-
-nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
+nnoremap <silent><leader><leader><CR> o<esc>
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>phw :h <C-R>=expand("<cword>")<CR><CR>
 nnoremap <silent> <leader>h :wincmd h<CR>
@@ -26,17 +25,23 @@ nnoremap <Leader>= :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
 nmap <leader><C-j> :tabprevious<CR>
 nmap <leader><C-k> :tabnext<CR>
+nmap <leader><C-h> :bprevious<CR>
+nmap <leader><C-l> :bNext<CR>
 noremap <Leader>rp :resize 100<CR>
 " nnoremap <Leader>ee oif err != nil {<CR>log.Fatalf("%+v\n", err)<CR>}<CR><esc>kkI<esc>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 nnoremap <silent> <leader>zq :bd<CR>
 
-
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 inoremap <silent><expr> <C-space> coc#refresh()
 
 " GoTo code navigation.
+"
+" You can call the action jumpDefinition with a command as argument:
+
+nmap <silent>gvd :call CocAction('jumpDefinition', 'vsplit')<CR>
+nmap <silent>gtd :call CocAction('jumpDefinition', 'tabe')<CR>
 nmap <leader>gd <Plug>(coc-definition)
 nmap <leader>gy <Plug>(coc-type-definition)
 nmap <leader>gi <Plug>(coc-implementation)
@@ -46,6 +51,7 @@ nmap <leader>e[ <Plug>(coc-diagnostic-prev-error)
 nmap <leader>e] <Plug>(coc-diagnostic-next-error)
 nmap <leader>g[ <Plug>(coc-diagnostic-prev)
 nmap <leader>g] <Plug>(coc-diagnostic-next)
+nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 " nmap <leader>g[ <Plug>(coc-diagnostic-prev)
 " nmap <leader>g] <Plug>(coc-diagnostic-next)
 " nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
@@ -83,7 +89,7 @@ map <C-n> :NERDTreeToggle<CR>
 map <C-_> gcc
 
 " CocCo
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent><nowait> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -97,14 +103,14 @@ nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<
 inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
 inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
 " beautify
-augroup  js_beautify
-    autocmd!
-    autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
-    autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
-    autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
-    autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
-    autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
-augroup END
+" augroup  js_beautify
+"     autocmd!
+"     autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
+"     autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
+"     autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
+"     autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+"     autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+" augroup END
 " Highlight the symbol and its references when holding the cursor.
 augroup holde_cursor_highlight
     autocmd!

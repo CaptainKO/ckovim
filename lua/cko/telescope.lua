@@ -6,7 +6,7 @@ require('telescope').setup {
     defaults = {
         prompt_position = 'top',
         sorting_strategy = "ascending",
-        file_ignore_patterns = {"node_modules"},
+        file_ignore_patterns = {"node_modules", "dist"},
         file_sorter = sorters.get_fzy_sorter,
         prompt_prefix = ' >',
         color_devicons = true,
