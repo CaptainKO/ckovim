@@ -45,6 +45,16 @@ if !exists('g:vscode')
         source $HOME/.config/nvim/plug-config/telescope.vim
     endif
 
+    if(PlugLoaded('vimspector'))
+        source $HOME/.config/nvim/plug-config/vimspector.vim
+    endif
+
+    if(PlugLoaded('vim-doge'))
+        source $HOME/.config/nvim/plug-config/doge.vim
+    endif
+    " if(PlugLoaded('vim-maximizer'))
+    "     source $HOME/.config/nvim/plug-config/
+    " endif
 
 endif
 

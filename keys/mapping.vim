@@ -2,7 +2,7 @@
 nnoremap <leader>ss :%s//g<Left><Left>
 nnoremap <leader>S yiw:%s/\<<C-r>"\>//g<left><left>
 """""""""""""""""""""""""""""""""""""
-" Mappings configurationn
+" Mappings configurations
 """""""""""""""""""""""""""""""""""""
 nnoremap <silent><leader><leader><CR> o<esc>
 nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
@@ -35,13 +35,12 @@ nnoremap <silent> <leader>zq :bd<CR>
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 inoremap <silent><expr> <C-space> coc#refresh()
-
+" COC Explorer
+:nnoremap <C-n> :CocCommand explorer ./ <CR>
 " GoTo code navigation.
 "
 " You can call the action jumpDefinition with a command as argument:
 
-nmap <silent>gvd :call CocAction('jumpDefinition', 'vsplit')<CR>
-nmap <silent>gtd :call CocAction('jumpDefinition', 'tabe')<CR>
 nmap <leader>gd <Plug>(coc-definition)
 nmap <leader>gy <Plug>(coc-type-definition)
 nmap <leader>gi <Plug>(coc-implementation)
@@ -51,7 +50,10 @@ nmap <leader>e[ <Plug>(coc-diagnostic-prev-error)
 nmap <leader>e] <Plug>(coc-diagnostic-next-error)
 nmap <leader>g[ <Plug>(coc-diagnostic-prev)
 nmap <leader>g] <Plug>(coc-diagnostic-next)
+nmap <silent><leader>gvd :call CocAction('jumpDefinition', 'vsplit')<CR>
 nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
+nmap <silent><leader>gtd :call CocAction('jumpDefinition', 'tabe')<CR>
+
 " nmap <leader>g[ <Plug>(coc-diagnostic-prev)
 " nmap <leader>g] <Plug>(coc-diagnostic-next)
 " nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
@@ -80,10 +82,13 @@ nmap <leader>gf :diffget //2<CR>
 nmap <leader>gs :G<CR>
 nmap <leader>gp :G push<CR>
 nnoremap <leader>gb :GBranches<CR>
+nnoremap <leader>gr :G rebase -i<CR>
+nnoremap <leader>gss :G stash<CR>
+nnoremap <leader>gsp :G stash pop<CR>
 
 " Neard tree
-nnoremap <leader>n :NERDTreeFocus<CR>
-map <C-n> :NERDTreeToggle<CR>
+" nnoremap <leader>n :NERDTreeFocus<CR>
+" map <C-n> :NERDTreeToggle<CR>
 
 " Commentary
 map <C-_> gcc
@@ -173,6 +178,38 @@ nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<CR>
 nnoremap <leader>fm <cmd>lua require('telescope').extensions.media_files.media_files()<CR>
 " UndoTree
 " nnoremap <F5> :UndotreeToggle<CR>
+
+fun! GotoWindow(id)
+    call win_gotoid(a:id)
+    MaximizerToggle
+endfun
+" Debugger remaps
+nnoremap <leader>dd :call vimspector#Launch()<CR>
+nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
+nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
+nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
+nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
+nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
+nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
+nnoremap <leader>de :call vimspector#Reset()<CR>
+
+nnoremap <leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
+
+nmap <leader>dl <Plug>VimspectorStepInto
+nmap <leader>dj <Plug>VimspectorStepOver
+nmap <leader>dk <Plug>VimspectorStepOut
+nmap <leader>d_ <Plug>VimspectorRestart
+nnoremap <leader>d<space> :call vimspector#Continue()<CR>
+
+nmap <leader>drc <Plug>VimspectorRunToCursor
+nmap <leader>db <Plug>VimspectorToggleBreakpoint
+nmap <leader>dcb <Plug>VimspectorToggleConditionalBreakpoint
+
+" <Plug>VimspectorStop
+" <Plug>VimspectorPause
+" <Plug>VimspectorAddFunctionBreakpoint
+"Toggle Maximizer
+nnoremap <leader>m :MaximizerToggle!<CR>
 
 fun! TrimWhitespace()
     let l:save = winsaveview()

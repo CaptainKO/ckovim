@@ -8,6 +8,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         "Plug 'machakann/vim-highlightedyank'
    else
         " Utility
+        " Rezie
+         Plug 'szw/vim-maximizer'
+
         " Tmux
         " Plug 'christoomey/vim-tmux-navigator'
         " Auto indent
@@ -38,9 +41,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         " Text navigation
         "Plug 'unblevable/quick-scope'
         "Plug 'majutsushi/tagbar'
-        Plug 'preservim/nerdtree' |
-            \ Plug 'Xuyuanp/nerdtree-git-plugin' |
-            \ Plug 'scrooloose/nerdtree-project-plugin'
+        " Plug 'preservim/nerdtree' |
+        "     \ Plug 'Xuyuanp/nerdtree-git-plugin' |
+        "     \ Plug 'scrooloose/nerdtree-project-plugin'
 
         Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
         Plug 'junegunn/fzf.vim'
@@ -91,7 +94,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
            \ Plug 'nvim-telescope/telescope-media-files.nvim' |
            \ Plug 'nvim-telescope/telescope-fzy-native.nvim'
         "Plug 'vwxyutarooo/nerdtree-devicons-syntax'
+        " Debugger
         Plug 'puremourning/vimspector'
+
 
         " Theme
         Plug 'dracula/vim', { 'as': 'dracula' }
