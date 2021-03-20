@@ -49,9 +49,9 @@ let g:elite_mode=1
 " if exists('+termguicolors')
 "   set termguicolors
 " endif
-if &compatible
-  set nocompatible               " Be iMproved
-endif
+" if &compatible
+"   set nocompatible               " Be iMproved
+" endif
 
 set colorcolumn=80
 " highlight ColorColumn ctermbg=0 guibg=lightgrey
