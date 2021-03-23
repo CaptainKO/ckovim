@@ -1,5 +1,5 @@
 local actions = require('telescope.actions')
-local sorters =require('telescope.sorters')
+local sorters = require('telescope.sorters')
 local previewers = require('telescope.previewers')
 
 require('telescope').setup {
@@ -10,6 +10,7 @@ require('telescope').setup {
         file_sorter = sorters.get_fzy_sorter,
         prompt_prefix = ' >',
         color_devicons = true,
+        set_env = { ['COLORTERM'] = 'truecolor' },
 
         file_previewer   = previewers.vim_buffer_cat.new,
         grep_previewer   = previewers.vim_buffer_vimgrep.new,
@@ -36,6 +37,7 @@ require('telescope').setup {
     }
 }
 
+
 require('telescope').load_extension('fzy_native')
 require('telescope').load_extension('media_files')
 
@@ -47,4 +49,14 @@ M.search_current_folders = function()
     })
 end
 
+M.git_branches = function ()
+    require'telescope.builtin'.git_branches({ attach_mapping = function (_, map)
+        -- map('i', '<c-d>', actions.git_delete_branch)
+        -- map('n', '<c-d>', actions.git_delete_branch)
+        map('i', '<c-e>', actions.git_checkout)
+        map('n', '<c-e>', actions.git_checkout)
+        map('n', '<c-e>', actions.git)
+    end })
+end
+require('nvim-web-devicons').setup()
 return M

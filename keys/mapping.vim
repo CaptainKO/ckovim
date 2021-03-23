@@ -36,7 +36,7 @@ nnoremap <silent> <leader>zq :bd<CR>
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 inoremap <silent><expr> <C-space> coc#refresh()
 " COC Explorer
-:nnoremap <C-n> :CocCommand explorer  <CR>
+nnoremap <C-n> :CocCommand explorer  <CR>
 " GoTo code navigation.
 "
 " You can call the action jumpDefinition with a command as argument:

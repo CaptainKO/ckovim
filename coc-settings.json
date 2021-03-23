@@ -11,6 +11,7 @@
   ],
   "html.format.wrapAttributes": "force-aligned",
   "Lua.hover.previewFields": 10000,
+  "Lua.workspace.preloadFileSize": 500,
   "prettier.disableLanguages": ["vue", "html", "typescript", "javascript"],
   "typescript.preferences.quoteStyle": "auto",
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": true,

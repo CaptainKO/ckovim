@@ -8,9 +8,10 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         "Plug 'machakann/vim-highlightedyank'
    else
         " Utility
-        " Rezie
-         Plug 'szw/vim-maximizer'
-
+        " Resize
+        Plug 'szw/vim-maximizer'
+        " Color hexan highlight
+        Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
         " Tmux
         " Plug 'christoomey/vim-tmux-navigator'
         " Auto indent
@@ -76,6 +77,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         " Plug 'pangloss/vim-javascript'
         " Typescript
         Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+        " Lua
+        Plug 'tjdevries/nlua.nvim'
         " Plug 'leafgarland/typescript-vim'
         " Plug 'peitalin/vim-jsx-typescript'
         " Syntax supports
@@ -93,6 +96,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
         Plug 'nvim-telescope/telescope.nvim'  |
            \ Plug 'nvim-telescope/telescope-media-files.nvim' |
            \ Plug 'nvim-telescope/telescope-fzy-native.nvim'
+        Plug 'svermeulen/vimpeccable'
         "Plug 'vwxyutarooo/nerdtree-devicons-syntax'
         " Debugger
         Plug 'puremourning/vimspector'
