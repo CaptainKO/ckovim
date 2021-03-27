@@ -42,7 +42,6 @@ return require('packer').startup(function(use)
         -- Change dates fast
         use 'tpope/vim-speeddating'
         -- Icons
-        use 'kyazdani42/vim-devicons'
         use {'kyazdani42/nvim-web-devicons', }
         -- Text navigation
         --Plug 'unblevable/quick-scope'

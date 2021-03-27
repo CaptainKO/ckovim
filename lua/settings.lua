@@ -10,13 +10,13 @@ vim.o.errorbells = false
 vim.o.smartindent = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
-vim.o.wrap = false
 vim.o.swapfile = false
 vim.o.backup = false
 vim.o.incsearch = true
 vim.o.scrolloff = 10
 vim.o.colorcolumn = "80"
-
+vim.o.wrap = false
+vim.wo.wrap = false
 vim.g.elite_mode = true
 vim.g.ftToIgnore = { 'nerdtree', 'fzf' }
 vim.g.loaded_matchparen = true
