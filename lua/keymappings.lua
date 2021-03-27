@@ -184,7 +184,7 @@ vim.api.nvim_set_keymap('n', '<Leader>dr', [[<cmd>call vimspector#Reset()<CR>]],
 
 function _G.go_to_window(id)
    vim.fn.win_gotoid(id)
-   vim.fn.MaximizerToggle()
+   vim.fn['MaximizerToggle']()
 end
 
 vim.api.nvim_set_keymap('n', '<Leader>dtcb', [[<cmd> call vimspector#CleanLineBreakpoint()<CR>]], {noremap = true})
