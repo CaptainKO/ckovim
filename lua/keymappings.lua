@@ -4,6 +4,7 @@ local function t(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
+
 vim.api.nvim_set_keymap('n', '<Leader>ss', ':%s//g<Left><Left>', { noremap = true })
 
 vim.api.nvim_set_keymap('n', '<Leader>S', 'yiw:%s/\\<<C-r>"\\>//g<Left><Left>"', { noremap = true })
@@ -168,11 +169,13 @@ vim.api.nvim_set_keymap('n', '<C-p>', [[<cmd> lua require('telescope.builtin').g
 vim.api.nvim_set_keymap('n', '<Leader>fo', [[<cmd> lua require('telescope.builtin').oldfiles()<CR>]], {noremap = true})
 vim.api.nvim_set_keymap('n', '<Leader>fc', [[<cmd> lua require('telescope.builtin').search_current_folders()<CR>]], {noremap = true})
 vim.api.nvim_set_keymap('n', '<Leader>fg', [[<cmd> lua require('telescope.builtin').grep_string()<CR>]], {noremap = true})
+vim.api.nvim_set_keymap('n', '<Leader>fl', [[<cmd> lua require('cko.telescope').live_grep()<CR>]], {noremap = true})
 vim.api.nvim_set_keymap('n', '<Leader>fb', [[<cmd> lua require('telescope.builtin').buffers()<CR>]], {noremap = true})
 vim.api.nvim_set_keymap('n', '<Leader>fm', [[<cmd> lua require('telescope').extensions.media_files()<CR>]], {noremap = true})
 
 vim.api.nvim_set_keymap('n', '<Leader>gb', [[<cmd> lua require('cko.telescope').git_branches()<CR>]], {noremap = true})
 
+-- VimSpector
 vim.api.nvim_set_keymap('n', '<Leader>dd', [[<cmd> lua vim.fn['vimspector#Launch']() <CR>]], {noremap = true})
 vim.api.nvim_set_keymap('n', '<Leader>dc', [[<cmd>call v:lua.go_to_window(g:vimspector_session_windows.code)<CR>]], {noremap = true})
 vim.api.nvim_set_keymap('n', '<Leader>dt', [[<cmd>call v:lua.go_to_window(g:vimspector_session_windows.tagpage)<CR>]], {noremap = true})

@@ -41,7 +41,26 @@ require('telescope').setup {
 require('telescope').load_extension('fzy_native')
 require('telescope').load_extension('media_files')
 
+
 local M = {}
+local lastFileType
+M.live_grep = function ()
+    require('nvim-web-devicons').setup()
+    local opts = {
+        vimgrep_arguments = {'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'}
+    }
+
+    vim.fn.inputrestore()
+    lastFileType = vim.fn.input({prompt = 'File pattern (default:*)', default = lastFileType or ''})
+    vim.fn.inputsave()
+
+    if  lastFileType ~= '' then
+        opts.vimgrep_arguments[#opts.vimgrep_arguments+1] = '-g'
+        opts.vimgrep_arguments[#opts.vimgrep_arguments+1] = lastFileType
+    end
+    require('telescope.builtin').live_grep(opts);
+end
+
 M.search_current_folders = function()
     require('telescope.builtin').find_files({
         prompt_title = "Current Folder",
@@ -51,12 +70,11 @@ end
 
 M.git_branches = function ()
     require'telescope.builtin'.git_branches({ attach_mapping = function (_, map)
-        -- map('i', '<c-d>', actions.git_delete_branch)
-        -- map('n', '<c-d>', actions.git_delete_branch)
+        map('i', '<c-d>', actions.git_delete_branch)
+        map('n', '<c-d>', actions.git_delete_branch)
         map('i', '<c-e>', actions.git_checkout)
         map('n', '<c-e>', actions.git_checkout)
-        map('n', '<c-e>', actions.git)
     end })
 end
-require('nvim-web-devicons').setup()
+
 return M

@@ -50,7 +50,7 @@ return require('packer').startup(function(use)
         --     \ Plug 'Xuyuanp/nerdtree-git-plugin' |
         --     \ Plug 'scrooloose/nerdtree-project-plugin'
 
-        use {'junegunn/fzf', run = vim.fn['fzf#install']  }
+        use {'junegunn/fzf', run = fn['fzf#install']  }
         use 'junegunn/fzf.vim'
         use 'tpope/vim-dispatch'
         --Auto pairs for '(' '[' '{'
@@ -62,7 +62,7 @@ return require('packer').startup(function(use)
         use {'neoclide/coc.nvim', branch = 'release'}
 
         -- Document Generators
-        use {'kkoomen/vim-doge', run = vim.fn['doge#install']  }
+        use {'kkoomen/vim-doge', run = fn['doge#install']  }
 
         -- Formatter
         use 'sbdchd/neoformat'

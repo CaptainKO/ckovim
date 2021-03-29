@@ -18,12 +18,14 @@ vim.o.colorcolumn = "80"
 vim.o.wrap = false
 vim.wo.wrap = false
 vim.g.elite_mode = true
-vim.g.ftToIgnore = { 'nerdtree', 'fzf' }
 vim.g.loaded_matchparen = true
 vim.cmd('set number relativenumber')
 
-vim.api.nvim_command('augroup numbertoggle')
-vim.api.nvim_command('autocmd!')
-vim.api.nvim_command('autocmd BufEnter,FocusGained,InsertLeave * if index(ftToIgnore, &ft) <1 | set relativenumber')
-vim.api.nvim_command('autocmd BufLeave,FocusLost,InsertEnter   * if index(ftToIgnore, &ft) <0 | set norelativenumber')
-vim.api.nvim_command('augroup END')
+vim.g.ftToIgnore = { 'nerdtree', 'fzf' }
+vim.api.nvim_exec([[
+   augroup numbertoggle
+      autocmd!
+      autocmd BufEnter,FocusGained,InsertLeave * if index(ftToIgnore, &ft) <1 | set relativenumber
+      autocmd BufLeave,FocusLost,InsertEnter   * if index(ftToIgnore, &ft) <0 | set norelativenumber
+   augroup END
+]], false)

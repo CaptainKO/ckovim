@@ -10,8 +10,9 @@
     "typescript"
   ],
   "html.format.wrapAttributes": "force-aligned",
+  "Lua.diagnostics.globals": ["vim"],
   "Lua.hover.previewFields": 10000,
-  "Lua.workspace.preloadFileSize": 500,
+  "Lua.workspace.preloadFileSize": 1000,
   "prettier.disableLanguages": ["vue", "html", "typescript", "javascript"],
   "typescript.preferences.quoteStyle": "auto",
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": true,
