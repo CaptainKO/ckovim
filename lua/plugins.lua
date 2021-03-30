@@ -11,10 +11,13 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
+-- vim.g.ale_disable_lsp = true
 
 return require('packer').startup(function(use)
         use 'easymotion/vim-easymotion'		--Quickly navigate in buffer
         -- Utility
+        -- Latex
+        -- use ('lervag/vimtex')
         -- Resize
         use 'szw/vim-maximizer'
         -- Color hexan highlight
