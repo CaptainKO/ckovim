@@ -138,7 +138,7 @@ vim.api.nvim_set_keymap('n', '<Leader>gss', ':G stash', { noremap = true })
 vim.api.nvim_set_keymap('', '<C-_>', 'gcc', {})
 
 -- Format
-vim.api.nvim_set_keymap('n', '<Leader><C-i>', '<cmd>Format<CR>' , { noremap = true })
+vim.api.nvim_set_keymap('n', '<Leader><Leader><C-i>', '<cmd>Format<CR>' , { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>f', '<Plug>(coc-format-selected)', {})
 vim.api.nvim_set_keymap('x', '<Leader>f', '<Plug>(coc-format-selected)', {})
 

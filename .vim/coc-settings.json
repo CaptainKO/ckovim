@@ -1,3 +1,6 @@
 {
-  "Lua.diagnostics.globals":["vim"]
+  "Lua.diagnostics.globals": [
+    "vim"
+  ],
+  "angular.enable-experimental-ivy-prompt": false
 }
