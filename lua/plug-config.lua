@@ -1,5 +1,5 @@
    require('cko.airline')
-   require('cko.cko.indent-line')
+   require('cko.indent-line')
    require('cko.coc')
    require('cko.doge')
    require('cko.easymotion')
