@@ -24,6 +24,8 @@ return require('packer').startup(function(use)
         use { 'rrethy/vim-hexokinase',  run = 'make hexokinase' }
 	-- Auto indent
 	use 'tpope/vim-sleuth'
+        -- Indent Characters
+        use 'Yggdroot/indentLine'
         -- sugar syntax for file editing
         -- use 'tpope/vim-eunuch'
         -- Editor config
