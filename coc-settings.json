@@ -10,14 +10,30 @@
     "typescript"
   ],
   "html.format.wrapAttributes": "force-aligned",
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"]
+    }
+  },
   "Lua.diagnostics.globals": ["vim"],
   "Lua.hover.previewFields": 10000,
   "Lua.workspace.preloadFileSize": 1000,
-  "prettier.disableLanguages": ["vue", "html", "typescript", "javascript"],
+  "prettier.disableLanguages": [
+    "vue",
+    "html",
+    "yaml",
+    "yml",
+    "typescript",
+    "javascript"
+  ],
   "typescript.preferences.quoteStyle": "auto",
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": true,
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": false,
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "yaml.format.enable": true,
+  "yaml.format.proseWrap": "always",
   "explorer.position": "right",
   "explorer.openAction.strategy": "previousWindow",
   "explorer.openAction.relativePath": true,

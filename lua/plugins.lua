@@ -63,6 +63,10 @@ return require('packer').startup(function(use)
         -- let g:polyglot_disabled = ['graphql', 'typescript', 'javascript']
         -- Plug 'sheerun/vim-polyglot'
         use {'neoclide/coc.nvim', branch = 'release'}
+        -- golang
+        use {'fatih/vim-go', run = ':GoInstallBinaries' }
+        -- dart
+        use 'dart-lang/dart-vim-plugin'
 
         -- Document Generators
         use {'kkoomen/vim-doge', run = fn['doge#install']  }
@@ -86,6 +90,8 @@ return require('packer').startup(function(use)
         use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}  -- We recommend updating the parsers on update
         -- Lua
         use 'tjdevries/nlua.nvim'
+        -- Databases
+        use 'martingms/vipsql'
         -- Plug 'leafgarland/typescript-vim'
         -- Plug 'peitalin/vim-jsx-typescript'
         -- Syntax supports
