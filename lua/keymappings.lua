@@ -1,7 +1,7 @@
 vim.g.mapleader =' '
 
 local function t(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
 
@@ -34,8 +34,8 @@ vim.api.nvim_set_keymap('n', '<Leader>rp', ':resize 100 <CR>', {noremap = true})
 -- switching
 vim.api.nvim_set_keymap('n', '<Leader><Tab>', ':tabprevious<CR>', {})
 vim.api.nvim_set_keymap('n', '<Leader><S-Tab>', ':tabnext<CR>', {})
-vim.api.nvim_set_keymap('n', '<Leader><C-o>', ':bprevious<CR>', {})
-vim.api.nvim_set_keymap('n', '<Leader><C-i>', ':bNext<CR>', {})
+vim.api.nvim_set_keymap('n', '<Leader><C-o>', ':bNext<CR>', {})
+vim.api.nvim_set_keymap('n', '<Leader><C-i>', ':bprev<CR>', {})
 
 -- visual mode
 vim.api.nvim_set_keymap('v', 'J', ':m \'>+1<CR>gv=gv', {noremap = true})
@@ -92,27 +92,27 @@ endfunction
 -- return vim.fn.pumvisible() == 1 and t'<C-n>' or t'<Tab>'
 -- scroll in normalmode
 function _G.scroll_down_no_doc()
-    local scroll = vim.fn['coc#float#scroll']
-    local hasScroll = vim.fn['coc#float#has_scroll']()
+   local scroll = vim.fn['coc#float#scroll']
+   local hasScroll = vim.fn['coc#float#has_scroll']()
 
-    return hasScroll == 1 and scroll(1) or t'<C-f>'
+   return hasScroll == 1 and scroll(1) or t'<C-f>'
 end
 
 function _G.scroll_up_no_doc()
-    local scroll = vim.fn['coc#float#scroll']
-    local hasScroll = vim.fn['coc#float#has_scroll']()
+   local scroll = vim.fn['coc#float#scroll']
+   local hasScroll = vim.fn['coc#float#has_scroll']()
 
-    return hasScroll == 1 and scroll(0) or t'<C-b>'
+   return hasScroll == 1 and scroll(0) or t'<C-b>'
 end
 -- scroll in insertmode
 function _G.scoll_down_in_doc()
-    local hasScroll = vim.fn['coc#float#has_scroll']()
-    return hasScroll == 1 and t'<c-r>'..'=coc#float#scroll(1)'..t'<cr>' or t'<Right>'
+   local hasScroll = vim.fn['coc#float#has_scroll']()
+   return hasScroll == 1 and t('<c-r>')..'=coc#float#scroll(1)'..t('<cr>') or t('<Right>')
 end
 
 function _G.scoll_up_in_doc()
-    local hasScroll = vim.fn['coc#float#has_scroll']()
-    return hasScroll == 1 and t'<c-r>'..'=coc#float#scroll(0)'..t'<cr>' or t'<Left>'
+   local hasScroll = vim.fn['coc#float#has_scroll']()
+   return hasScroll == 1 and t('<c-r>')..'=coc#float#scroll(0)'..t('<cr>') or t('<Left>')
 end
 vim.api.nvim_set_keymap('n', '<C-n>', '<cmd>CocCommand explorer <CR>', { noremap = true,  nowait = true})
 
@@ -154,9 +154,9 @@ function _G.CocRefresh()
    return vim.fn['coc#refresh']();
 end
 function _G.smart_tab()
-    return vim.fn.pumvisible() == 1 and vim.fn['coc#_select_confirm']()
-        or vim.fn['coc#expandableOrJumpable']() and t'<C-r>'.. '=coc#rpc#request(\'doKeymap\', [\'snippets-expand-jump\',\'\'])'..t'<CR>'
-        or check_back_space() and t'<TAB>' or  vim.fn['coc#refresh']()
+   return vim.fn.pumvisible() == 1 and vim.fn['coc#_select_confirm']()
+      or vim.fn['coc#expandableOrJumpable']() and t'<C-r>'.. '=coc#rpc#request(\'doKeymap\', [\'snippets-expand-jump\',\'\'])'..t'<CR>'
+      or check_back_space() and t'<TAB>' or  vim.fn['coc#refresh']()
 end
 
 vim.cmd([[ command! -nargs=0 Format :call CocAction('format') ]])
@@ -164,10 +164,11 @@ vim.cmd([[ command! -nargs=? Fold :call   CocAction('fold', <f-args>) ]])
 vim.cmd([[ command! -nargs=0 OR   :call   CocAction('runCommand', 'editor.action.organizeImport') ]])
 
 -- Telescope
-vim.api.nvim_set_keymap('n', '<Leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<CR>]], {noremap = true})
-vim.api.nvim_set_keymap('n', '<C-p>', [[<cmd> lua require('telescope.builtin').git_files()<CR>]], {noremap = true})
+-- vim.api.nvim_set_keymap('n', '<Leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<CR>]], {noremap = true})
+-- vim.api.nvim_set_keymap('n', '<C-p>', [[<cmd> lua require('telescope.builtin').git_files()<CR>]], {noremap = true})
+vim.api.nvim_set_keymap('n', '<C-p>', [[<cmd> lua require('cko.telescope').git_files()<CR>]], {noremap = true})
 vim.api.nvim_set_keymap('n', '<Leader>fo', [[<cmd> lua require('telescope.builtin').oldfiles()<CR>]], {noremap = true})
-vim.api.nvim_set_keymap('n', '<Leader>fc', [[<cmd> lua require('telescope.builtin').search_current_folders()<CR>]], {noremap = true})
+vim.api.nvim_set_keymap('n', '<Leader>ff', [[<cmd> lua require('cko.telescope').search_current_folders()<CR>]], {noremap = true})
 vim.api.nvim_set_keymap('n', '<Leader>fg', [[<cmd> lua require('telescope.builtin').grep_string()<CR>]], {noremap = true})
 vim.api.nvim_set_keymap('n', '<Leader>fl', [[<cmd> lua require('cko.telescope').live_grep()<CR>]], {noremap = true})
 vim.api.nvim_set_keymap('n', '<Leader>fb', [[<cmd> lua require('telescope.builtin').buffers()<CR>]], {noremap = true})
@@ -205,16 +206,18 @@ vim.api.nvim_set_keymap('n', '<Leader>m', [[<cmd> MaximizerToggle!<CR>]], {norem
 
 vim.cmd([[
 fun! TrimWhitespace()
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
+   let l:save = winsaveview()
+   keeppatterns %s/\s\+$//e
+   call winrestview(l:save)
 endfun
 ]])
 
-vim.cmd('augroup trim_white_space')
-vim.cmd('autocmd!')
-vim.cmd('autocmd BufWritePre * :call TrimWhitespace()')
-vim.cmd('augroup END')
+vim.api.nvim_exec([[
+  augroup trim_white_space
+    autocmd!
+    autocmd BufWritePre * :call TrimWhitespace()
+  augroup END
+]], false)
 
 -- vim.api.nvim_set_keymap('n', '<Leader>', [[]], {noremap = true})
 -- vim.api.nvim_set_keymap('n', '<Leader>', [[]], {noremap = true})

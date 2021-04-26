@@ -1,3 +1,5 @@
 autoload/**/*
 undodir/**/*
+plugin/**/*
 ./.netrwhist
+

@@ -1,8 +1,10 @@
 local actions = require('telescope.actions')
 local sorters = require('telescope.sorters')
 local previewers = require('telescope.previewers')
+local telescope = require('telescope')
+local builtin = require('telescope.builtin')
 
-require('telescope').setup {
+telescope.setup {
     defaults = {
         prompt_position = 'top',
         sorting_strategy = "ascending",
@@ -38,8 +40,8 @@ require('telescope').setup {
 }
 
 
-require('telescope').load_extension('fzy_native')
-require('telescope').load_extension('media_files')
+telescope.load_extension('fzy_native')
+telescope.load_extension('media_files')
 
 
 local M = {}
@@ -58,18 +60,26 @@ M.live_grep = function ()
         opts.vimgrep_arguments[#opts.vimgrep_arguments+1] = '-g'
         opts.vimgrep_arguments[#opts.vimgrep_arguments+1] = lastFileType
     end
-    require('telescope.builtin').live_grep(opts);
+    builtin.live_grep(opts);
+end
+
+M.git_files = function ()
+    require('nvim-web-devicons').setup()
+    builtin.git_files{ args = { '--no-hidden' } }
 end
 
 M.search_current_folders = function()
-    require('telescope.builtin').find_files({
+    require('nvim-web-devicons').setup()
+    builtin.find_files({
         prompt_title = "Current Folder",
-        cwd = "./"
+        cwd = "./" ,
+        find_command = {'rg', '--files' ,'--iglob','!**/.git/**/*' ,'--ignore','--hidden'}
     })
 end
 
 M.git_branches = function ()
-    require'telescope.builtin'.git_branches({ attach_mapping = function (_, map)
+    require('nvim-web-devicons').setup()
+    builtin.git_branches({ attach_mapping = function (_, map)
         map('i', '<c-d>', actions.git_delete_branch)
         map('n', '<c-d>', actions.git_delete_branch)
         map('i', '<c-e>', actions.git_checkout)

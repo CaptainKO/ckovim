@@ -107,10 +107,15 @@ return require('packer').startup(function(use)
         use 'gisphm/vim-gitignore'
         use 'airblade/vim-gitgutter'
         use 'stsewd/fzf-checkout.vim'
+        use {
+            'ThePrimeagen/git-worktree.nvim',
+            requires = { 'nvim-lua/plenary.nvim' }
+        }
+
 
         use {
             'nvim-telescope/telescope.nvim',
-            requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim','kyazdani42/nvim-web-devicons' }
+            requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim', 'kyazdani42/nvim-web-devicons' }
         }
 	use {
 		'nvim-telescope/telescope-media-files.nvim',
