@@ -133,6 +133,8 @@ vim.api.nvim_set_keymap('n', '<Leader>gp', ':G push<CR>', {})
 vim.api.nvim_set_keymap('n', '<Leader>gr', ':G rebase -i<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>gsp', ':G stash pop', {noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>gss', ':G stash', { noremap = true })
+-- Git Blame
+vim.api.nvim_set_keymap('n', '<Leader><C-u>', ':call gitblame#echo()<CR>', { noremap = true })
 
 -- Commentary
 vim.api.nvim_set_keymap('', '<C-_>', 'gcc', {})
@@ -167,6 +169,7 @@ vim.cmd([[ command! -nargs=0 OR   :call   CocAction('runCommand', 'editor.action
 -- vim.api.nvim_set_keymap('n', '<Leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<CR>]], {noremap = true})
 -- vim.api.nvim_set_keymap('n', '<C-p>', [[<cmd> lua require('telescope.builtin').git_files()<CR>]], {noremap = true})
 vim.api.nvim_set_keymap('n', '<C-p>', [[<cmd> lua require('cko.telescope').git_files()<CR>]], {noremap = true})
+vim.api.nvim_set_keymap('n', '<Leader>pp', [[<cmd> lua require('cko.telescope').search_current_folders()<CR>]], {noremap = true})
 vim.api.nvim_set_keymap('n', '<Leader>fo', [[<cmd> lua require('telescope.builtin').oldfiles()<CR>]], {noremap = true})
 vim.api.nvim_set_keymap('n', '<Leader>ff', [[<cmd> lua require('cko.telescope').search_current_folders()<CR>]], {noremap = true})
 vim.api.nvim_set_keymap('n', '<Leader>fg', [[<cmd> lua require('telescope.builtin').grep_string()<CR>]], {noremap = true})
@@ -205,14 +208,12 @@ vim.api.nvim_set_keymap('n', '<Leader>d<space>',[[<cmd>call vimspector#Continue(
 vim.api.nvim_set_keymap('n', '<Leader>m', [[<cmd> MaximizerToggle!<CR>]], {noremap = true})
 
 vim.cmd([[
-fun! TrimWhitespace()
-   let l:save = winsaveview()
-   keeppatterns %s/\s\+$//e
-   call winrestview(l:save)
-endfun
-]])
+  fun! TrimWhitespace()
+     let l:save = winsaveview()
+     keeppatterns %s/\s\+$//e
+     call winrestview(l:save)
+  endfun
 
-vim.api.nvim_exec([[
   augroup trim_white_space
     autocmd!
     autocmd BufWritePre * :call TrimWhitespace()

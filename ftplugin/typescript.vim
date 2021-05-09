@@ -1,4 +1,5 @@
 " TODO: use regex
+" syntax off
 nnoremap <buffer> <leader>zz :find %<.html<CR>
 " nnoremap <buffer> <leader>zm :find %:s?component?module?:s?controller?module?:s?service?module?:s?repository?module?:s?entity?module?<CR>
 nnoremap <buffer> <leader>zp :find %:s/\(\.\)\@<=module\(\.\)\@=/component/<CR>

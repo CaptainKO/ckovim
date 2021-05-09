@@ -1,4 +1,4 @@
-if vim.g.vscode  then
+if vim.g.vscode then
   require'settings'
 else
   require'plugins'
