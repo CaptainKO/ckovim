@@ -11,23 +11,23 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
-vim.g.ale_disable_lsp = true
+-- vim.g.ale_disable_lsp = true
 
 return require('packer').startup(function(use)
-    use 'easymotion/vim-easymotion'		--Quickly navigate in buffer
+    -- use 'easymotion/vim-easymotion'		--Quickly navigate in buffer
     -- Utility
     -- auto load local .vimrc files
-    use 'krisajenkins/vim-projectlocal'
+    -- use 'krisajenkins/vim-projectlocal'
     -- Latex
     -- use ('lervag/vimtex')
     -- Resize
-    use 'szw/vim-maximizer'
+    -- use 'szw/vim-maximizer'
     -- Color hexan highlight
-    use { 'rrethy/vim-hexokinase',  run = 'make hexokinase' }
+    -- use { 'rrethy/vim-hexokinase',  run = 'make hexokinase' }
     -- Auto indent
-    use 'tpope/vim-sleuth'
+    -- use 'tpope/vim-sleuth'
     -- Indent Characters
-    use 'Yggdroot/indentLine'
+    -- use 'Yggdroot/indentLine'
     -- sugar syntax for file editing
     -- use 'tpope/vim-eunuch'
     -- Editor config
@@ -69,12 +69,12 @@ return require('packer').startup(function(use)
     -- use 'prabirshrestha/vim-lsp'
     -- use 'mattn/vim-lsp-settings'
     -- golang
-    use { 'fatih/vim-go', run = ':GoInstallBinaries' }
+    -- use { 'fatih/vim-go', run = ':GoInstallBinaries' }
     -- dart
     -- use 'dart-lang/dart-vim-plugin'
 
     -- Document Generators
-    use {'kkoomen/vim-doge', run = fn['doge#install']  }
+    -- use {'kkoomen/vim-doge', run = fn['doge#install']  }
 
     -- Formatter
     use 'sbdchd/neoformat'
@@ -92,13 +92,18 @@ return require('packer').startup(function(use)
     -- Javascript
     -- Plug 'pangloss/vim-javascript'
     -- Typescript
-    use 'HerringtonDarkholme/yats.vim'
+    -- use 'HerringtonDarkholme/yats.vim'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}  -- We recommend updating the parsers on update
     use { 'nvim-treesitter/playground', }  -- We recommend updating the parsers on update
+    use { 'p00f/nvim-ts-rainbow' }
+    -- Angular
+    use {
+        'nvim-treesitter/nvim-treesitter-angular'
+    }
     -- Lua
     use 'tjdevries/nlua.nvim'
     -- Databases
-    use 'martingms/vipsql'
+    -- use 'martingms/vipsql'
     -- Plug 'leafgarland/typescript-vim'
     -- Plug 'peitalin/vim-jsx-typescript'
     -- Syntax supports
@@ -106,8 +111,8 @@ return require('packer').startup(function(use)
     -- Git Support
     use 'tpope/vim-fugitive'
     use {
-            'rbong/vim-flog',
-            requires = {{ 'tpope/vim-fugitive' }}
+        'rbong/vim-flog',
+        requires = {{ 'tpope/vim-fugitive' }}
     }
     use 'gisphm/vim-gitignore'
     use 'airblade/vim-gitgutter'
@@ -116,10 +121,7 @@ return require('packer').startup(function(use)
     -- use 'APZelos/blamer.nvim'
 
     -- use 'stsewd/fzf-checkout.vim'
-    use {
-        'ThePrimeagen/git-worktree.nvim',
-        requires = { 'nvim-lua/plenary.nvim' }
-    }
+    use { 'ThePrimeagen/git-worktree.nvim', }
 
 
     use {
@@ -128,13 +130,13 @@ return require('packer').startup(function(use)
     }
     use {
         'nvim-telescope/telescope-media-files.nvim',
-        requires = {{ 'nvim-telescope/telescope.nvim' }}
+        -- requires = {{ 'nvim-telescope/telescope.nvim' }}
     }
     use {
         'nvim-telescope/telescope-fzy-native.nvim',
-        requires = {{ 'nvim-telescope/telescope.nvim' }}
+        -- requires = {{ 'nvim-telescope/telescope.nvim' }}
     }
-    use 'svermeulen/vimpeccable'
+    -- use 'svermeulen/vimpeccable'
     -- Icons
     use {'kyazdani42/nvim-web-devicons', }
     --Plug 'vwxyutarooo/nerdtree-devicons-syntax'
@@ -149,12 +151,12 @@ return require('packer').startup(function(use)
        'sainnhe/gruvbox-material',
         --requires = {{
             -- 'nvim-treesitter/nvim-treesitter',
-            -- 'sheerun/vim-polyglot',
+            'sheerun/vim-polyglot',
         --}},
     }
 
     -- Tutorials
-    use 'ThePrimeagen/vim-be-good'
+    -- use 'ThePrimeagen/vim-be-good'
     -- Plug 'rktjmp/lush.nvim' " required
     --Plug 'tweekmonster/gofmt.vim'
     --Plug 'tpope/vim-fugitive'

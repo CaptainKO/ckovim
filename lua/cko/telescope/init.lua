@@ -27,8 +27,8 @@ telescope.setup {
     },
     extensions = {
       fzy_native = {
-      override_generic_sorter = false,
-      override_file_sorter = true,
+        override_generic_sorter = true,
+        override_file_sorter = true,
       },
       media_files = {
       -- filetypes whitelist
@@ -39,8 +39,8 @@ telescope.setup {
   }
 }
 
-
 telescope.load_extension('fzy_native')
+telescope.load_extension('git_worktree')
 telescope.load_extension('media_files')
 
 

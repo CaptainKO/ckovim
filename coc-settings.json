@@ -32,6 +32,7 @@
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": true,
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": false,
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+	"tslint.autoFixOnSave": true,
   "yaml.format.enable": true,
   "yaml.format.proseWrap": "always",
   "explorer.position": "right",
