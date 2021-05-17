@@ -34,7 +34,7 @@ bind_key('n', '<Leader>rp', ':resize 100 <CR>', {noremap = true})
 -- switching
 bind_key('n', '<Leader><Tab>', ':tabprevious<CR>', {noremap = true})
 bind_key('n', '<Leader><S-Tab>', ':tabnext<CR>', {noremap = true})
-bind_key('n', '<Leader><C-o>', ':bNext<CR>', {noremap = true})
+bind_key('n', '<Leader><C-o>', ':bnext<CR>', {noremap = true})
 bind_key('n', '<Leader><C-i>', ':bprev<CR>', {noremap = true})
 
 -- quick fix
@@ -183,6 +183,7 @@ bind_key('n', '<Leader>fb', [[<cmd> lua require('telescope.builtin').buffers()<C
 bind_key('n', '<Leader>fm', [[<cmd> lua require('telescope').extensions.media_files()<CR>]], {noremap = true})
 bind_key('n', '<Leader>ww', [[<cmd> lua require('telescope').extensions.git_worktree.git_worktrees()<CR>]], {noremap = true})
 bind_key('n', '<Leader>wc', [[<cmd> lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>]], {noremap = true})
+bind_key('n', '<Leader>fs', [[<cmd> lua require('telescope.builtin').git_status()<CR>]], {noremap = true})
 
 bind_key('n', '<Leader>gb', [[<cmd> lua require('cko.telescope').git_branches()<CR>]], {noremap = true})
 

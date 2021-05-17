@@ -95,7 +95,7 @@ return require('packer').startup(function(use)
     -- use 'HerringtonDarkholme/yats.vim'
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}  -- We recommend updating the parsers on update
     use { 'nvim-treesitter/playground', }  -- We recommend updating the parsers on update
-    use { 'p00f/nvim-ts-rainbow' }
+    -- use { 'p00f/nvim-ts-rainbow' }
     -- Angular
     use {
         'nvim-treesitter/nvim-treesitter-angular'

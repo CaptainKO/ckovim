@@ -9,26 +9,27 @@ vim.api.nvim_exec([[
 function! Gruvbox_material_custom() abort
   " Link a highlight group to a predefined highlight group.
   " See `colors/gruvbox-material.vim` for all predefined highlight groups.
-  highlight! link TSString Green
-  highlight! link TSProperty Fg
-  highlight! link TSKeyword OrangeBold
+  " highlight! link TSString Green
+  "highlight! link TSProperty Fg
+  "highlight! link TSKeyword OrangeBold
   highlight! link TSTag AquaBold
   highlight! link TSPunctDelimiter Fg
   highlight! link TSTagDelimiter AquaBold
-  highlight! link TSKeywordOperator OrangeBold
+  "highlight! link TSKeywordOperator OrangeBold
   highlight! link TSTag Blue
-  highlight! link TSTagDelimiter Blue
+  "highlight! link TSTagDelimiter Blue
+
   highlight! link htmlTSProperty Aqua
-  "highlight! link htmlTSKeyword Red
+  highlight! link htmlTSKeyword Red
   "highlight! link typescriptDotNotation Fg
   "highlight! link typescriptTypeAnnotation Fg
   "highlight! link typescriptObjectColon Fg
   "highlight! link typescriptDecorator PurpleItalic
   "highlight! link typescriptObjectLabel Fg
-  "highlight! link htmlTagName Aqua
-  "highlight! link htmlTagN Blue
-  "highlight! link htmlTag Blue
-  "highlight! link htmlArg Blue
+  highlight! link htmlTagName Aqua
+  highlight! link htmlTagN Blue
+  highlight! link htmlTag Blue
+  highlight! link htmlArg Blue
   " Initialize the color palette.
   " The first parameter is a valid value for `g:gruvbox_material_background`,
   " and the second parameter is a valid value for `g:gruvbox_material_palette`.

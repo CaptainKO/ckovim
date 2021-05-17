@@ -32,19 +32,18 @@ require'nvim-treesitter.configs'.setup {
   indent = {
     enable = true,
   },
-  rainbow = {
-    colors = {
-      'white',
-      'red',
-      'orange',
-      'yellow',
-      'blue',
-      'green',
+  -- rainbow = {
+  --   colors = {
+  --     'white',
+  --     'red',
+  --     'orange',
+  --     'yellow',
+  --     'blue',
+  --     'green',
 
-    }
-  }
+  --   }
+  -- }
 }
-
 vim.cmd([[
-  setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
+   set foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
 ]])

@@ -15,16 +15,16 @@ vim.o.hlsearch = false
 vim.o.ignorecase = true
 vim.o.incsearch = true
 vim.o.mouse = 'a'
-vim.o.scrolloff = 10
+vim.o.scrolloff = 15
 vim.o.shiftwidth = 2
 -- vim.o.shellcmdflag='-ic'
--- vim.o.autoindent = true
-vim.o.smartcase = true
+vim.o.autoindent = true
 vim.o.smartindent = true
+vim.o.smartcase = true
 vim.o.softtabstop = 2
 vim.o.swapfile = false
 vim.o.syntax = 'on'
-vim.o.tabstop = 2
+-- vim.o.tabstop = 2
 vim.o.wrap = false
 vim.o.showmode = false
 vim.wo.cursorline = true
@@ -32,20 +32,27 @@ vim.wo.cursorline = true
 -- vim.wo.foldmethod = 'expr'
 -- vim.wo.foldexpr = vim.fn['nvim_treesitter#foldexpr']()
 vim.wo.number = true
--- vim.wo.relativenumber = true
-vim.o.foldlevel = 2
-vim.o.foldlevelstart = 1
+vim.wo.relativenumber = true
+vim.o.foldlevel = 3
+vim.o.foldlevelstart = 2
 vim.wo.wrap = false
 
 -- set foldmethod=expr
 -- set foldexpr=nvim_treesitter#foldexpr()
 -- vim.g.ftToIgnore = { 'nerdtree', 'fzf' }
 vim.api.nvim_exec([[
-  augroup numbertoggle
+  augroup Numbertoggle
     autocmd!
     autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
     autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
   augroup END
 ]], false)
+-- vim.api.nvim_exec([[
+-- augroup remember_folds
+--   autocmd!
+--   autocmd BufWinLeave * mkview
+--   autocmd BufWinEnter * silent! loadview
+-- augroup END
+-- ]], false)
 -- autocmd BufEnter,FocusGained,InsertLeave * if index(ftToIgnore, &ft) <1 | set relativenumber
 -- autocmd BufLeave,FocusLost,InsertEnter   * if index(ftToIgnore, &ft) <0 | set norelativenumber
