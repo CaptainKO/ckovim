@@ -3,7 +3,7 @@ vim.o.background = 'dark'
 --vim.cmd('colorscheme gruvbox')
 vim.g.gruvbox_material_palette = 'original'
 vim.g.gruvbox_material_background = 'medium'
-vim.g.gruvbox_material_enable_italic = true
+vim.g.gruvbox_material_enable_italic = false
 vim.g.gruvbox_material_enable_bold = true
 vim.api.nvim_exec([[
 function! Gruvbox_material_custom() abort
@@ -20,7 +20,7 @@ function! Gruvbox_material_custom() abort
   "highlight! link TSTagDelimiter Blue
 
   highlight! link htmlTSProperty Aqua
-  highlight! link htmlTSKeyword Red
+  highlight! link htmlTSKeyword PurpleBold
   "highlight! link typescriptDotNotation Fg
   "highlight! link typescriptTypeAnnotation Fg
   "highlight! link typescriptObjectColon Fg
@@ -49,7 +49,8 @@ augroup GruvboxMaterialCustom
   autocmd!
   autocmd ColorScheme gruvbox-material call Gruvbox_material_custom()
 augroup END
-colorscheme gruvbox-material
+
+" colorscheme gruvbox-material
 ]],false)
 vim.cmd('colorscheme gruvbox-material')
 vim.g.airline_theme = 'gruvbox_material'

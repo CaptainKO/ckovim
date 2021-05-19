@@ -7,7 +7,6 @@ vim.o.clipboard = 'unnamedplus,unnamed'
 vim.o.colorcolumn = "80"
 vim.o.encoding = 'UTF-8'
 vim.o.errorbells = false
-vim.o.expandtab = true
 vim.o.exrc = true
 vim.o.secure = true
 vim.o.hidden = true
@@ -18,14 +17,22 @@ vim.o.mouse = 'a'
 vim.o.scrolloff = 15
 vim.o.shiftwidth = 2
 -- vim.o.shellcmdflag='-ic'
-vim.o.autoindent = true
 vim.o.smartindent = true
 vim.o.smartcase = true
 vim.o.softtabstop = 2
+vim.o.autoindent = true
+vim.o.tabstop = 2
+vim.w.softtabstop = 2
+vim.w.autoindent = true
+vim.w.tabstop = 2
+vim.w.expandtab = true
 vim.o.swapfile = false
-vim.o.syntax = 'on'
+-- vim.o.syntax = 'on'
+vim.w.syntax = 'off'
+
 -- vim.o.tabstop = 2
 vim.o.wrap = false
+vim.wo.wrap = false
 vim.o.showmode = false
 vim.wo.cursorline = true
 -- vim.wo.foldenable = false
@@ -33,9 +40,10 @@ vim.wo.cursorline = true
 -- vim.wo.foldexpr = vim.fn['nvim_treesitter#foldexpr']()
 vim.wo.number = true
 vim.wo.relativenumber = true
-vim.o.foldlevel = 3
-vim.o.foldlevelstart = 2
-vim.wo.wrap = false
+vim.o.foldlevel = 4
+vim.o.foldlevelstart = 3
+
+-- vim.o.syntax = 'manual'
 
 -- set foldmethod=expr
 -- set foldexpr=nvim_treesitter#foldexpr()
@@ -47,6 +55,7 @@ vim.api.nvim_exec([[
     autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
   augroup END
 ]], false)
+
 -- vim.api.nvim_exec([[
 -- augroup remember_folds
 --   autocmd!

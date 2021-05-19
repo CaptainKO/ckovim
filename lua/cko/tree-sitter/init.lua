@@ -11,7 +11,7 @@ local langs = {
 }
 
 require'nvim-treesitter.configs'.setup {
-  ensure_installed =  langs,
+  ensure_installed = langs,
   -- ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   ignore_install = { "rust" },
   highlight = {
@@ -30,7 +30,8 @@ require'nvim-treesitter.configs'.setup {
     },
   },
   indent = {
-    enable = true,
+    -- enable = true,
+    disable = false,
   },
   -- rainbow = {
   --   colors = {

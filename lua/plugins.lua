@@ -25,7 +25,7 @@ return require('packer').startup(function(use)
     -- Color hexan highlight
     -- use { 'rrethy/vim-hexokinase',  run = 'make hexokinase' }
     -- Auto indent
-    -- use 'tpope/vim-sleuth'
+    use 'tpope/vim-sleuth'
     -- Indent Characters
     -- use 'Yggdroot/indentLine'
     -- sugar syntax for file editing
@@ -46,6 +46,9 @@ return require('packer').startup(function(use)
     use 'tpope/vim-surround'
     -- Undo tree
     use 'mbbill/undotree'
+    -- Terminal
+    use { "akinsho/nvim-toggleterm.lua" }
+
     -- Change dates fast
     -- use 'tpope/vim-speeddating'
     -- Text navigation
@@ -74,7 +77,7 @@ return require('packer').startup(function(use)
     -- use 'dart-lang/dart-vim-plugin'
 
     -- Document Generators
-    -- use {'kkoomen/vim-doge', run = fn['doge#install']  }
+    use {'kkoomen/vim-doge', run = fn['doge#install']  }
 
     -- Formatter
     use 'sbdchd/neoformat'
@@ -84,7 +87,7 @@ return require('packer').startup(function(use)
     -- Frontend
     -- html
     use 'othree/html5.vim'
-    use  'Valloric/MatchTagAlways'
+    use 'Valloric/MatchTagAlways'
     -- Quick type html
     use 'mattn/emmet-vim'
     -- Modifies tags
@@ -107,7 +110,6 @@ return require('packer').startup(function(use)
     -- Plug 'leafgarland/typescript-vim'
     -- Plug 'peitalin/vim-jsx-typescript'
     -- Syntax supports
-    -- Plug 'HerringtonDarkholme/yats.vim'
     -- Git Support
     use 'tpope/vim-fugitive'
     use {
@@ -151,7 +153,7 @@ return require('packer').startup(function(use)
        'sainnhe/gruvbox-material',
         --requires = {{
             -- 'nvim-treesitter/nvim-treesitter',
-            'sheerun/vim-polyglot',
+            -- 'sheerun/vim-polyglot',
         --}},
     }
 

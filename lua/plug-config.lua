@@ -10,6 +10,7 @@
    require('cko.rooter')
    require('cko.startify')
    require('cko.telescope')
+   require('cko.toggleterm')
    require('cko.tree-sitter')
    require('cko.undo-tree')
    require('cko.vim-go')

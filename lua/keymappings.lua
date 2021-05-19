@@ -16,6 +16,11 @@ bind_key('n', '<Leader>j', ':wincmd j<CR>', { noremap = true, silent = true })
 bind_key('n', '<Leader>k', ':wincmd k<CR>', { noremap = true, silent = true })
 bind_key('n', '<Leader>l', ':wincmd l<CR>', { noremap = true, silent = true })
 
+bind_key('t', '<Leader>h', '<C-\\><C-N><C-w>h', { noremap = true, silent = true })
+bind_key('t', '<Leader>j', '<C-\\><C-N><C-w>j', { noremap = true, silent = true })
+bind_key('t', '<Leader>k', '<C-\\><C-N><C-w>k', { noremap = true, silent = true })
+bind_key('t', '<Leader>l', '<C-\\><C-N><C-w>l', { noremap = true, silent = true })
+
 bind_key('n', '<Leader>u', ':UndoTreeShow<CR>', { noremap = true })
 bind_key('n', '<Leader>pv', ':wincmd v<bar> :Ex <bar> :vertical resize 30 <CR>', { noremap = true })
 bind_key('n', '<Leader>ps', ':Rg<SPACE>', {noremap = true})
