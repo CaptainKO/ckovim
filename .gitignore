@@ -1,5 +1,7 @@
 autoload/**/*
 undodir/**/*
 plugin/**/*
+db_ui/**/*
+vimspector-config/gadgets/**/*
 ./.netrwhist
 

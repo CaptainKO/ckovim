@@ -15,11 +15,12 @@ vim.o.ignorecase = true
 vim.o.incsearch = true
 vim.o.mouse = 'a'
 vim.o.scrolloff = 15
-vim.o.shiftwidth = 2
 -- vim.o.shellcmdflag='-ic'
 vim.o.smartindent = true
 vim.o.smartcase = true
+vim.o.expandtab = true
 vim.o.softtabstop = 2
+<<<<<<< HEAD
 vim.o.autoindent = true
 vim.o.tabstop = 2
 vim.w.softtabstop = 2
@@ -27,10 +28,7 @@ vim.w.autoindent = true
 vim.w.tabstop = 2
 vim.w.expandtab = true
 vim.o.swapfile = false
--- vim.o.syntax = 'on'
-vim.w.syntax = 'off'
-
--- vim.o.tabstop = 2
+vim.o.syntax = 'on'
 vim.o.wrap = false
 vim.wo.wrap = false
 vim.o.showmode = false
@@ -47,12 +45,15 @@ vim.o.foldlevelstart = 3
 
 -- set foldmethod=expr
 -- set foldexpr=nvim_treesitter#foldexpr()
--- vim.g.ftToIgnore = { 'nerdtree', 'fzf' }
+vim.g.ftToIgnore = { 'nerdtree', 'fzf' , 'NvimTree'}
 vim.api.nvim_exec([[
   augroup Numbertoggle
     autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+    autocmd BufEnter,FocusGained,InsertLeave * if index(ftToIgnore, &ft) < 1 | set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter   * if index(ftToIgnore, &ft) < 1 |set norelativenumber
+  augroup END
+  augroup JsonToJsonc
+      autocmd! FileType json set filetype=jsonc
   augroup END
 ]], false)
 

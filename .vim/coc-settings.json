@@ -2,5 +2,14 @@
   "Lua.diagnostics.globals": [
     "vim"
   ],
-  "angular.enable-experimental-ivy-prompt": false
+  "angular.enable-experimental-ivy-prompt": false,
+  "cSpell.words": [
+    "Nerdfont",
+    "Unstage",
+    "gopls",
+    "readonly",
+    "struct",
+    "vsplit",
+    "yapf"
+  ]
 }

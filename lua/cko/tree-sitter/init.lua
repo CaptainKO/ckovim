@@ -2,6 +2,7 @@
 local langs = {
     'html',
     'json',
+    'jsonc',
     'css',
     'yaml',
     'jsdoc',
@@ -16,8 +17,7 @@ require'nvim-treesitter.configs'.setup {
   ignore_install = { "rust" },
   highlight = {
     enable = true,              -- false will disable the whole extension
-    -- disable = { 'typescript', 'javascript' }
-    -- enable = false,              -- false will disable the whole extension
+    -- enable = false,
   },
 
   incremental_selection = {
@@ -25,7 +25,7 @@ require'nvim-treesitter.configs'.setup {
     keymaps = {
         init_selection = "gnn",
         node_incremental = "grn",
-        -- scope_incremental = "grc",
+        scope_incremental = "grc",
         node_decremental = "grm",
     },
   },

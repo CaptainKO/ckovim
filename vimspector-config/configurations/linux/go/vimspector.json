@@ -5,9 +5,9 @@
       "adapter": "vscode-go",
       "configuration": {
         "request": "launch",
-        "program": "${file}",
+        "program": "${fileDirname}",
         "mode": "debug",
-        "dlvToolPath": "/home/cko/.local/share/go/bin/dlv"
+        "dlvToolPath": "$HOME/.local/share/go/bin/dlv"
       }
     }
   }

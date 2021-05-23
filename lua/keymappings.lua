@@ -53,85 +53,171 @@ bind_key('v', 'K', ':m \'>-2<CR>gv=gv', {noremap = true})
 -- buffers
 bind_key('n', '<Leader>zq', ':bd<CR>', {noremap = true, silent = true})
 
+-- vim-tree
+-- bind_key('n', '<Leader><c-n>', '<cmd>NvimTreeToggle<CR>', {noremap = true})
+-- Harpoon
+
+bind_key('n', '<Leader>ha', '<cmd> lua require("harpoon.mark").add_file()<CR>', {noremap =true})
+-- TreeSitter
+bind_key('n', '<Leader>th', ':TSBufToggle highlight<CR>', {noremap = true, silent = true})
+
 -- Coc
+if not vim.g.useLSP then
+   bind_key('n', 'gd', '<Plug>(coc-definition)', {})
+   bind_key('n', '<Leader>gd', '<Plug>(coc-definition)', {})
 
-bind_key('n', 'gd', '<Plug>(coc-definition)', {})
-bind_key('n', '<Leader>gd', '<Plug>(coc-definition)', {})
+   bind_key('n', 'gy', '<Plug>(coc-type-definition)', {})
+   bind_key('n', '<Leader>gy', '<Plug>(coc-type-definition)', {})
 
-bind_key('n', 'gy', '<Plug>(coc-type-definition)', {})
-bind_key('n', '<Leader>gy', '<Plug>(coc-type-definition)', {})
+   bind_key('n', 'gi', '<Plug>(coc-implementation)', {})
+   bind_key('n', '<Leader>gi', '<Plug>(coc-implementation)', {})
 
-bind_key('n', 'gi', '<Plug>(coc-implementation)', {})
-bind_key('n', '<Leader>gi', '<Plug>(coc-implementation)', {})
+   bind_key('n', 'gr', '<Plug>(coc-references)', {})
+   bind_key('n', '<Leader>gr', '<Plug>(coc-references)', {})
 
-bind_key('n', 'gr', '<Plug>(coc-references)', {})
-bind_key('n', '<Leader>gr', '<Plug>(coc-references)', {})
+   bind_key('n', '<Leader>rr', '<Plug>(coc-rename)', {})
+   bind_key('n', '<Leader>F2', '<Plug>(coc-rename)', {})
+   bind_key('n', '<Leader>e[', '<Plug>(coc-diagnostic-prev-error)', {})
+   bind_key('n', '<Leader>e]', '<Plug>(coc-diagnostic-next-error)', {})
+   bind_key('n', '<Leader>g[', '<Plug>(coc-diagnostic-prev)', {})
+   bind_key('n', '<Leader>g]', '<Plug>(coc-diagnostic-next)', {})
+   bind_key('n', '<Leader>ac', '<Plug>(coc-codeaction)', {})
+   bind_key('n', '<Leader>qf', '<Plug>(coc-fix-current)', {})
+   bind_key('n',
+       '<Leader>gvd', '<cmd>call CocAction(\'jumpDefinition\', \'vsplit\')<CR>',
+       { silent = true }
+   )
+   bind_key('n',
+       '<Leader>gtd', '<cmd>call CocAction(\'jumpDefinition\', \'tabe\')<CR>',
+       { silent = true }
+   )
+   bind_key('i', '<C-space>', '<cmd>call coc#refresh()<CR>', {noremap = true,  silent = true})
+   bind_key('n', '<Leader>prw', '<cmd>CocSearch <C-R>=expand("<cword>")<CR><CR>', { noremap = true })
+   bind_key('n', '<Leader>cr', '<cmd>CocRestart<CR>', { noremap = true })
+   bind_key('n', 'K', ':call Show_documentation()<CR>', { noremap = true, nowait = true })
 
-bind_key('n', '<Leader>rr', '<Plug>(coc-rename)', {})
-bind_key('n', '<Leader>F2', '<Plug>(coc-rename)', {})
-bind_key('n', '<Leader>e[', '<Plug>(coc-diagnostic-prev-error)', {})
-bind_key('n', '<Leader>e]', '<Plug>(coc-diagnostic-next-error)', {})
-bind_key('n', '<Leader>g[', '<Plug>(coc-diagnostic-prev)', {})
-bind_key('n', '<Leader>g]', '<Plug>(coc-diagnostic-next)', {})
-bind_key('n', '<Leader>ac', '<Plug>(coc-codeaction)', {})
-bind_key('n', '<Leader>qf', '<Plug>(coc-fix-current)', {})
-bind_key('n',
-    '<Leader>gvd', '<cmd>call CocAction(\'jumpDefinition\', \'vsplit\')<CR>',
-    { silent = true }
-)
-bind_key('n',
-    '<Leader>gtd', '<cmd>call CocAction(\'jumpDefinition\', \'tabe\')<CR>',
-    { silent = true }
-)
-bind_key('i', '<C-space>', '<cmd>call coc#refresh()<CR>', {noremap = true,  silent = true})
-bind_key('n', '<Leader>prw', '<cmd>CocSearch <C-R>=expand("<cword>")<CR><CR>', { noremap = true })
-bind_key('n', '<Leader>cr', '<cmd>CocRestart<CR>', { noremap = true })
-bind_key('n', 'K', ':call Show_documentation()<CR>', { noremap = true, nowait = true })
+   vim.cmd([[
+   function! Show_documentation()
+       if(index(['vim', 'help'], &filetype) >= 0)
+           execute 'h '.expand('<cword>')
+       else
+           call CocAction('doHover')
+       endif
+   endfunction
+   ]])
 
-vim.cmd([[
-function! Show_documentation()
-    if(index(['vim', 'help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    else
-        call CocAction('doHover')
-    endif
-endfunction
-]])
+   -- return vim.fn.pumvisible() == 1 and t'<C-n>' or t'<Tab>'
+   -- scroll in normalmode
+   function _G.scroll_down_no_doc()
+      local scroll = vim.fn['coc#float#scroll']
+      local hasScroll = vim.fn['coc#float#has_scroll']()
 
--- return vim.fn.pumvisible() == 1 and t'<C-n>' or t'<Tab>'
--- scroll in normalmode
-function _G.scroll_down_no_doc()
-   local scroll = vim.fn['coc#float#scroll']
-   local hasScroll = vim.fn['coc#float#has_scroll']()
+      return hasScroll == 1 and scroll(1) or t'<C-f>'
+   end
 
-   return hasScroll == 1 and scroll(1) or t'<C-f>'
+   function _G.scroll_up_no_doc()
+      local scroll = vim.fn['coc#float#scroll']
+      local hasScroll = vim.fn['coc#float#has_scroll']()
+
+      return hasScroll == 1 and scroll(0) or t'<C-b>'
+   end
+   -- scroll in insertmode
+   function _G.scoll_down_in_doc()
+      local hasScroll = vim.fn['coc#float#has_scroll']()
+      return hasScroll == 1 and t('<c-r>')..'=coc#float#scroll(1)'..t('<cr>') or t('<Right>')
+   end
+
+   function _G.scoll_up_in_doc()
+      local hasScroll = vim.fn['coc#float#has_scroll']()
+      return hasScroll == 1 and t('<c-r>')..'=coc#float#scroll(0)'..t('<cr>') or t('<Left>')
+   end
+   bind_key('n', '<C-n>', '<cmd>CocCommand explorer <CR>', { noremap = true,  nowait = true})
+
+
+   -- Coc scroll inside popup
+   bind_key('n', '<Leader><C-f>', 'v:lua.scroll_down_no_doc()', { noremap = true, expr = true, nowait = true })
+   bind_key('n', '<Leader><C-b>', 'v:lua.scroll_up_no_doc()', { noremap = true, expr = true, nowait = true})
+   bind_key('i', '<C-f>', 'v:lua.scroll_down_in_doc()', { noremap = true, expr = true, nowait = true})
+   bind_key('i', '<C-b>', 'v:lua.scroll_up_in_doc()', { noremap = true, expr = true, nowait = true})
+   -- vim.api.nvim_set_keymap('n', '<Leader><C->', '<expr>', {noremap = true, nowait = true})
+   vim.cmd([[ command! -nargs=0 Format :call CocAction('format') ]])
+   vim.cmd([[ command! -nargs=? Fold :call   CocAction('fold', <f-args>) ]])
+   vim.cmd([[ command! -nargs=0 OR   :call   CocAction('runCommand', 'editor.action.organizeImport') ]])
+
+   bind_key('n', '<Leader><Leader><C-i>', '<cmd>Format<CR>' , { noremap = true })
+   bind_key('n', '<Leader>f', '<Plug>(coc-format-selected)', {})
+   bind_key('x', '<Leader>f', '<Plug>(coc-format-selected)', {})
+
+   bind_key('i', '<TAB>', 'v:lua.smart_tab()', {noremap = true, expr = true})
+   local function check_back_space()
+      local col = vim.api.nvim_win_get_cursor(0)[2]
+      return (col == 0) or vim.api.nvim_get_current_line():sub(col, col):match('%s') and true
+   end
+
+   function _G.CocRefresh()
+      return vim.fn['coc#refresh']();
+   end
+   function _G.smart_tab()
+      return vim.fn.pumvisible() == 1 and vim.fn['coc#_select_confirm']()
+         or vim.fn['coc#expandableOrJumpable']() and t'<C-r>'.. '=coc#rpc#request(\'doKeymap\', [\'snippets-expand-jump\',\'\'])'..t'<CR>'
+         or check_back_space() and t'<TAB>' or  vim.fn['coc#refresh']()
+   end
 end
 
-function _G.scroll_up_no_doc()
-   local scroll = vim.fn['coc#float#scroll']
-   local hasScroll = vim.fn['coc#float#has_scroll']()
+if vim.g.useLSP then
+   bind_key('n', '<leader><leader>f', "<cmd>lua vim.lsp.buf.formatting()<CR>", {noremap = true })
+   bind_key('v', '<leader><leader>f', "<cmd>lua vim.lsp.buf.range_formatting()<CR>", {noremap = true})
+   -- bind_key('n', '<leader>ac', "<cmd>lua vim.lsp.buf.code_action()<CR>", {noremap = true})
+   -- bind_key('v', '<leader>ac', "<cmd>lua vim.lsp.buf.range_code_action()<CR>", {noremap = true})
+   bind_key('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap= true, silent=true});
+   bind_key('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', {noremap= true, silent=true});
+   bind_key('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', {noremap= true, silent=true});
+   bind_key('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', {noremap= true, silent=true});
+   bind_key('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', {noremap= true, silent=true});
+   bind_key('n', '<Leader><c-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', {noremap= true, silent=true});
+   bind_key('n', '<Leader>g]', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', {noremap= true, silent=true});
+   bind_key('n', '<Leader>g[', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', {noremap= true, silent=true});
+   _G.s_tab_complete = function()
+     if vim.fn.pumvisible() == 1 then
+          return t "<C-p>"
+        elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
+          return t "<Plug>(vsnip-jump-prev)"
+        else
+          return t "<S-Tab>"
+        end
+   end
 
-   return hasScroll == 1 and scroll(0) or t'<C-b>'
-end
--- scroll in insertmode
-function _G.scoll_down_in_doc()
-   local hasScroll = vim.fn['coc#float#has_scroll']()
-   return hasScroll == 1 and t('<c-r>')..'=coc#float#scroll(1)'..t('<cr>') or t('<Right>')
-end
+   _G.tab_complete = function()
+     if vim.fn.pumvisible() == 1 then
+          return t "<C-n>"
+        elseif vim.fn.call("vsnip#jumpable", {1}) == 1 then
+          return t "<Plug>(vsnip-jump-next)"
+        else
+          return t "<Tab>"
+        end
+   end
+   bind_key("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+   bind_key("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+   bind_key("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+   bind_key("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
-function _G.scoll_up_in_doc()
-   local hasScroll = vim.fn['coc#float#has_scroll']()
-   return hasScroll == 1 and t('<c-r>')..'=coc#float#scroll(0)'..t('<cr>') or t('<Left>')
-end
-bind_key('n', '<C-n>', '<cmd>CocCommand explorer <CR>', { noremap = true,  nowait = true})
+  -- Nvim Compe
 
 
--- Coc scroll inside popup
-bind_key('n', '<Leader><C-f>', 'v:lua.scroll_down_no_doc()', { noremap = true, expr = true, nowait = true })
-bind_key('n', '<Leader><C-b>', 'v:lua.scroll_up_no_doc()', { noremap = true, expr = true, nowait = true})
-bind_key('i', '<C-f>', 'v:lua.scroll_down_in_doc()', { noremap = true, expr = true, nowait = true})
-bind_key('i', '<C-b>', 'v:lua.scroll_up_in_doc()', { noremap = true, expr = true, nowait = true})
--- vim.api.nvim_set_keymap('n', '<Leader><C->', '<expr>', {noremap = true, nowait = true})
+
+
+  -- bind_key("i", "<C-space>", "<cmd>call compe#complete()<CR>", {noremap = true, expr = true, silent = true})
+  -- bind_key("i", "<CR>", "<cmd>call compe#confirm('<CR>')<CR>", {noremap = true, expr = true, silent = true})
+  -- bind_key("i", "<C-e>", "<cmd>call compe#close('<C-e>')<CR>", {noremap = true, expr = true, silent = true})
+  -- bind_key("i", "<C-f>", "call compe#scroll({ 'delta': +4 })", {noremap = true, expr = true, silent = true})
+  -- bind_key("i", "<C-d>", "call compe#scroll({ 'delta': -4 })", {noremap = true, expr = true, silent = true})
+
+  -- lsp saga
+  bind_key('n', '<leader>ac', "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", {noremap=true, silent = true})
+  bind_key('v', '<leader>ac', "<cmd>lua require('lspsaga.codeaction').code_range_action()<CR>", {noremap=true, silent = true})
+  bind_key('n', '<leader>rr', "<cmd>lua require('lspsaga.rename').rename()<CR>", {noremap=true, silent = true})
+
+end -- endif lsp
 
 -- Sweet Sweet FuGITive
 bind_key('n', '<Leader>gf', ':diffget //2<CR>', {})
@@ -149,30 +235,9 @@ bind_key('n', '<Leader><C-u>', ':call gitblame#echo()<CR>', { noremap = true })
 bind_key('', '<C-_>', 'gcc', {})
 
 -- Format
-bind_key('n', '<Leader><Leader><C-i>', '<cmd>Format<CR>' , { noremap = true })
-bind_key('n', '<Leader>f', '<Plug>(coc-format-selected)', {})
-bind_key('x', '<Leader>f', '<Plug>(coc-format-selected)', {})
-
 
 -- Tab selection
-bind_key('i', '<TAB>', 'v:lua.smart_tab()', {noremap = true, expr = true})
-local function check_back_space()
-   local col = vim.api.nvim_win_get_cursor(0)[2]
-   return (col == 0) or vim.api.nvim_get_current_line():sub(col, col):match('%s') and true
-end
 
-function _G.CocRefresh()
-   return vim.fn['coc#refresh']();
-end
-function _G.smart_tab()
-   return vim.fn.pumvisible() == 1 and vim.fn['coc#_select_confirm']()
-      or vim.fn['coc#expandableOrJumpable']() and t'<C-r>'.. '=coc#rpc#request(\'doKeymap\', [\'snippets-expand-jump\',\'\'])'..t'<CR>'
-      or check_back_space() and t'<TAB>' or  vim.fn['coc#refresh']()
-end
-
-vim.cmd([[ command! -nargs=0 Format :call CocAction('format') ]])
-vim.cmd([[ command! -nargs=? Fold :call   CocAction('fold', <f-args>) ]])
-vim.cmd([[ command! -nargs=0 OR   :call   CocAction('runCommand', 'editor.action.organizeImport') ]])
 
 -- Telescope
 -- vim.api.nvim_set_keymap('n', '<Leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<CR>]], {noremap = true})
@@ -219,6 +284,13 @@ bind_key('n', '<Leader>d<space>',[[<cmd>call vimspector#Continue()<CR>]], {norem
 
 -- Toggle Maximizer
 bind_key('n', '<Leader>m', [[<cmd> MaximizerToggle!<CR>]], {noremap = true})
+
+-- Database
+-- Dadbod
+bind_key('n', '<Leader>bu', '<cmd> DBUIToggle<CR>', { noremap=true, silent=true})
+bind_key('n', '<Leader>bf', '<cmd> DBUIFindBuffer<CR>', {noremap=true, silent=true})
+bind_key('n', '<Leader>br', '<cmd> DBUIRenameBuffer<CR>', {noremap=true, silent=true})
+bind_key('n', '<Leader>bl', '<cmd> DBUILastQueryInfo<CR>', {noremap=true, silent=true})
 
 vim.cmd([[
   fun! TrimWhitespace()
