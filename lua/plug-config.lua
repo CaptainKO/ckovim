@@ -1,4 +1,4 @@
-if vim.g.useLSP then
+if vim.g.use_lsp then
   require('cko.lsp')
 else
   require('cko.coc')

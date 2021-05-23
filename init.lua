@@ -1,4 +1,4 @@
-vim.g.useLSP = false
+vim.g.use_lsp = false
 
 if vim.g.vscode then
   require'settings'
