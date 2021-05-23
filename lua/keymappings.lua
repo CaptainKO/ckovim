@@ -280,6 +280,13 @@ bind_key('n', '<Leader>d<space>',[[<cmd>call vimspector#Continue()<CR>]], {norem
 -- Toggle Maximizer
 bind_key('n', '<Leader>m', [[<cmd> MaximizerToggle!<CR>]], {noremap = true})
 
+-- Database
+-- Dadbod
+bind_key('n', '<Leader>bu', '<cmd> DBUIToggle<CR>', { noremap=true, silent=true})
+bind_key('n', '<Leader>bf', '<cmd> DBUIFindBuffer<CR>', {noremap=true, silent=true})
+bind_key('n', '<Leader>br', '<cmd> DBUIRenameBuffer<CR>', {noremap=true, silent=true})
+bind_key('n', '<Leader>bl', '<cmd> DBUILastQueryInfo<CR>', {noremap=true, silent=true})
+
 vim.cmd([[
   fun! TrimWhitespace()
      let l:save = winsaveview()

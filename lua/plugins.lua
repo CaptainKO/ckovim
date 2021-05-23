@@ -117,8 +117,7 @@ return require('packer').startup(function(use)
   -- Lua
   use 'tjdevries/nlua.nvim'
   -- Database
-  use { }
-  use { 'kristijanhusak/vim-dadbod-ui', requires = { 'tpope/vim-dadbod'  }}
+  use { 'kristijanhusak/vim-dadbod-ui', requires = { 'tpope/vim-dadbod' }}
   -- use 'martingms/vipsql'
   -- Plug 'leafgarland/typescript-vim'
   -- Plug 'peitalin/vim-jsx-typescript'
