@@ -25,11 +25,13 @@ return require('packer').startup(function(use)
   -- Color hexan highlight
   -- use { 'rrethy/vim-hexokinase',  run = 'make hexokinase' }
   -- Auto indent
-  -- use 'tpope/vim-sleuth'
+  use 'tpope/vim-sleuth'
   -- Indent Characters
   -- use 'Yggdroot/indentLine'
   -- sugar syntax for file editing
   -- use 'tpope/vim-eunuch'
+  -- Todo
+  use 'dhruvasagar/vim-dotoo'
   -- Editor config
   use 'editorconfig/editorconfig-vim'
   -- Starter for choose recent projects
@@ -109,7 +111,6 @@ return require('packer').startup(function(use)
   -- use 'HerringtonDarkholme/yats.vim'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}  -- We recommend updating the parsers on update
   use { 'nvim-treesitter/playground', }  -- We recommend updating the parsers on update
-  -- use { 'p00f/nvim-ts-rainbow' }
   -- Angular
   use {
       'nvim-treesitter/nvim-treesitter-angular'

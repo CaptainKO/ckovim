@@ -9,6 +9,10 @@
   "diagnostic.hintSign": "",
   "diagnostic.warningSign": "",
   "diagnostic.errorSign": "",
+  "sql.database": "postgresql",
+  "sql.formatOptions": {
+    "language": "postgresql"
+  },
   "coc.preferences.colorSupport": false,
   "coc.preferences.formatOnSaveFiletypes": [
     "python",
@@ -16,13 +20,13 @@
     "typescript"
   ],
   "html.format.wrapAttributes": "force-aligned",
-  "languageserver": {
+  /*"languageserver": {
     "golang": {
       "command": "gopls",
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"]
     }
-  },
+  },*/
   "Lua.diagnostics.globals": ["vim"],
   "Lua.hover.previewFields": 10000,
   "Lua.workspace.preloadFileSize": 1000,
@@ -128,7 +132,10 @@
     "]c": ["wait", "markNext:git"],
     "<<": "gitStage",
     ">>": "gitUnstage"
-  }
+  },
+  "cSpell.userWords": [
+    "postgresql"
+  ]
   /* "suggest.completionItemKindLabels": { */
   /*   "variable": "\ufa88", */
   /*   "constant": "\uf8ff", */

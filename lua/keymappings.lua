@@ -4,6 +4,7 @@ local function t(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
+bind_key('i', '<C-BS>', t'<Z-w>', {noremap=true,silent=true})
 
 bind_key('n', '<Leader>ss', ':%s//g<Left><Left>', { noremap = true })
 
@@ -43,8 +44,8 @@ bind_key('n', '<Leader><C-o>', ':bnext<CR>', {noremap = true})
 bind_key('n', '<Leader><C-i>', ':bprev<CR>', {noremap = true})
 
 -- quick fix
-bind_key('n', '<c-j>' , ':cn<CR>', {noremap = true})
-bind_key('n', '<c-k>' , ':cp<CR>', {noremap = true})
+bind_key('n', '<c-j>' , '<cmd>cn<CR>', {noremap = true, nowait=true})
+bind_key('n', '<c-k>' , '<cmd>cp<CR>', {noremap = true, nowait=true})
 
 -- visual mode
 bind_key('v', 'J', ':m \'>+1<CR>gv=gv', {noremap = true})
@@ -91,7 +92,7 @@ if not vim.g.useLSP then
        '<Leader>gtd', '<cmd>call CocAction(\'jumpDefinition\', \'tabe\')<CR>',
        { silent = true }
    )
-   bind_key('i', '<C-space>', '<cmd>call coc#refresh()<CR>', {noremap = true,  silent = true})
+   bind_key('i', '<C-space>', '<cmd>call coc#refresh()<CR>', {noremap = true, silent = true})
    bind_key('n', '<Leader>prw', '<cmd>CocSearch <C-R>=expand("<cword>")<CR><CR>', { noremap = true })
    bind_key('n', '<Leader>cr', '<cmd>CocRestart<CR>', { noremap = true })
    bind_key('n', 'K', ':call Show_documentation()<CR>', { noremap = true, nowait = true })
@@ -122,12 +123,13 @@ if not vim.g.useLSP then
       return hasScroll == 1 and scroll(0) or t'<C-b>'
    end
    -- scroll in insertmode
-   function _G.scoll_down_in_doc()
+   function _G.scroll_down_in_doc()
       local hasScroll = vim.fn['coc#float#has_scroll']()
       return hasScroll == 1 and t('<c-r>')..'=coc#float#scroll(1)'..t('<cr>') or t('<Right>')
+
    end
 
-   function _G.scoll_up_in_doc()
+   function _G.scroll_up_in_doc()
       local hasScroll = vim.fn['coc#float#has_scroll']()
       return hasScroll == 1 and t('<c-r>')..'=coc#float#scroll(0)'..t('<cr>') or t('<Left>')
    end
