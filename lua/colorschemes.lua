@@ -17,7 +17,7 @@ function! Gruvbox_material_custom() abort
   hi! link VirtualTextHint Aqua
   hi! link VirtualTextInfo Grey
   highlight! link TSTag AquaBold
-  highlight! link TSPunctDelimiter Fg
+  "highlight! link TSPunctDelimiter Fg
   highlight! link TSTagDelimiter AquaBold
   "highlight! link TSKeywordOperator OrangeBold
   highlight! link TSTag Blue

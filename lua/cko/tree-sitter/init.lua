@@ -4,11 +4,15 @@ local langs = {
     'json',
     'jsonc',
     'css',
+    'scss',
     'yaml',
     'jsdoc',
     'lua',
     'dockerfile',
     'typescript',
+    'go',
+    'gomod',
+    'comment'
 }
 
 require'nvim-treesitter.configs'.setup {

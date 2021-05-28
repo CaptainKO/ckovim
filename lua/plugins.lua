@@ -93,7 +93,7 @@ return require('packer').startup(function(use)
   -- use {'kkoomen/vim-doge', run = fn['doge#install']  }
 
   -- Formatter
-  use 'sbdchd/neoformat'
+  -- use 'sbdchd/neoformat'
   -- Plug 'maksimr/vim-jsbeautify'
   -- Autocomplete
   -- Plug 'valloric/youcompleteme'
@@ -117,6 +117,8 @@ return require('packer').startup(function(use)
   }
   -- Lua
   use 'tjdevries/nlua.nvim'
+  -- AutoLoad lua files
+  use 'tjdevries/astronauta.nvim'
   -- Database
   use { 'kristijanhusak/vim-dadbod-ui', requires = { 'tpope/vim-dadbod' }}
   -- use 'martingms/vipsql'
