@@ -1,5 +1,6 @@
 local bind_key = vim.api.nvim_set_keymap
 
+print("hello")
 bind_key('n', 'o', '<Plug>(DBUI_SelectLine)', { noremap=true, silent=true})
 bind_key('n', '<CR>', '<Plug>(DBUI_SelectLine)', { noremap=true, silent=true})
 bind_key('n', 'S', '<Plug>(DBUI_SelectLineVsplit)', { noremap=true, silent=true})

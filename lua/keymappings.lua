@@ -155,8 +155,8 @@ if not vim.g.useLSP then
 
 
   -- Coc scroll inside popup
-  bind_key('n', '<Leader><C-f>', 'v:lua.scroll_down_no_doc()', { noremap = true, expr = true, nowait = true })
-  bind_key('n', '<Leader><C-b>', 'v:lua.scroll_up_no_doc()', { noremap = true, expr = true, nowait = true})
+  bind_key('n', '<C-f>', 'v:lua.scroll_down_no_doc()', { noremap = true, expr = true, nowait = true })
+  bind_key('n', '<C-b>', 'v:lua.scroll_up_no_doc()', { noremap = true, expr = true, nowait = true})
   bind_key('i', '<C-f>', 'v:lua.scroll_down_in_doc()', { noremap = true, expr = true, nowait = true})
   bind_key('i', '<C-b>', 'v:lua.scroll_up_in_doc()', { noremap = true, expr = true, nowait = true})
   -- vim.api.nvim_set_keymap('n', '<Leader><C->', '<expr>', {noremap = true, nowait = true})

@@ -137,7 +137,10 @@
     "<<": "gitStage",
     ">>": "gitUnstage"
   },
-  "cSpell.userWords": ["postgresql"]
+  "cSpell.userWords": [
+    "postgres",
+    "postgresql"
+  ]
   /* "suggest.completionItemKindLabels": { */
   /*   "variable": "\ufa88", */
   /*   "constant": "\uf8ff", */

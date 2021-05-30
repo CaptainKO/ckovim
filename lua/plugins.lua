@@ -37,7 +37,7 @@ return require('packer').startup(function(use)
   -- Starter for choose recent projects
   use 'mhinz/vim-startify'
   -- Change Root
-  use 'airblade/vim-rooter'
+  -- use 'airblade/vim-rooter'
   -- Status/tabline
   use 'vim-airline/vim-airline'
   -- Harpoon
@@ -75,6 +75,8 @@ return require('packer').startup(function(use)
   -- use {'neovim/nvim-lspconfig'}
   -- use {'kabouzeid/nvim-lspinstall'}
   -- use {'hrsh7th/nvim-compe'}
+  -- Snippets
+  use {'honza/vim-snippets'}
   -- use {'hrsh7th/vim-vsnip'}
   -- use {'glepnir/lspsaga.nvim'}
   --
