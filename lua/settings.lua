@@ -17,7 +17,6 @@ vim.o.mouse = 'a'
 vim.o.scrolloff = 15
 vim.wo.list = true
 vim.o.listchars = 'tab:▸ ,trail:-,nbsp:%,eol:'
--- vim.o.shellcmdflag='-ic'
 vim.o.smartindent = true
 vim.o.smartcase = true
 vim.o.expandtab = true
@@ -32,18 +31,16 @@ vim.o.wrap = false
 vim.wo.wrap = false
 vim.o.showmode = false
 vim.wo.cursorline = true
--- vim.wo.foldenable = false
--- vim.wo.foldmethod = 'expr'
--- vim.wo.foldexpr = vim.fn['nvim_treesitter#foldexpr']()
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.o.foldlevel = 4
 vim.o.foldlevelstart = 3
 
 -- vim.o.syntax = 'manual'
-
--- set foldmethod=expr
--- set foldexpr=nvim_treesitter#foldexpr()
+-- vim.o.shellcmdflag='-ic'
+-- vim.wo.foldenable = false
+-- vim.wo.foldmethod = 'expr'
+-- vim.wo.foldexpr = vim.fn['nvim_treesitter#foldexpr']()
 vim.g.ftToIgnore = { 'nerdtree', 'fzf' , 'NvimTree'}
 vim.api.nvim_exec([[
   augroup Numbertoggle
