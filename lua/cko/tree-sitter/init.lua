@@ -27,28 +27,23 @@ require'nvim-treesitter.configs'.setup {
   incremental_selection = {
   enable = true,
     keymaps = {
-        init_selection = "gnn",
-        node_incremental = "grn",
-        scope_incremental = "grc",
-        node_decremental = "grm",
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
     },
   },
   indent = {
     -- enable = true,
     disable = false,
   },
-  -- rainbow = {
-  --   colors = {
-  --     'white',
-  --     'red',
-  --     'orange',
-  --     'yellow',
-  --     'blue',
-  --     'green',
-
-  --   }
-  -- }
+  rainbow = {
+    enable = true,
+    extended = true,
+    max_file_lines = 1000
+  }
 }
+
 vim.cmd([[
    set foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
 ]])

@@ -41,14 +41,16 @@ vim.o.foldlevelstart = 3
 -- vim.wo.foldenable = false
 -- vim.wo.foldmethod = 'expr'
 -- vim.wo.foldexpr = vim.fn['nvim_treesitter#foldexpr']()
-vim.g.ftToIgnore = { 'nerdtree', 'fzf' , 'NvimTree'}
+
+-- vim.g.ftToIgnore = { 'nerdtree', 'fzf' , 'NvimTree'}
 vim.api.nvim_exec([[
   augroup Numbertoggle
     autocmd!
-      autocmd InsertLeave * set relativenumber
-      autocmd InsertEnter * set norelativenumber
+    autocmd FocusGained,BufEnter,InsertLeave * set relativenumber
+    autocmd FocusLost,BufLeave,InsertEnter * set norelativenumber
   augroup END
 ]], false)
+
   -- augroup JsonToJsonc
   --     autocmd! FileType json set filetype=jsonc
   --     autocmd! FileType json setlocal syntax=manual
