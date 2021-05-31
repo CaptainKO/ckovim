@@ -45,8 +45,8 @@ vim.g.ftToIgnore = { 'nerdtree', 'fzf' , 'NvimTree'}
 vim.api.nvim_exec([[
   augroup Numbertoggle
     autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave * if index(ftToIgnore, &ft) < 1 | set relativenumber
-    autocmd BufLeave,FocusLost,InsertEnter   * if index(ftToIgnore, &ft) < 1 |set norelativenumber
+      autocmd InsertLeave * set relativenumber
+      autocmd InsertEnter * set norelativenumber
   augroup END
 ]], false)
   -- augroup JsonToJsonc

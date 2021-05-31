@@ -16,25 +16,25 @@ function! Gruvbox_material_custom() abort
   hi! link VirtualTextWarning Yellow
   hi! link VirtualTextHint Aqua
   hi! link VirtualTextInfo Grey
-  highlight! link TSTag AquaBold
-  "highlight! link TSPunctDelimiter Fg
-  highlight! link TSTagDelimiter AquaBold
-  "highlight! link TSKeywordOperator OrangeBold
-  highlight! link TSTag Blue
-  "highlight! link TSTagDelimiter Blue
+  hi! link TSTag AquaBold
+  "hi! link TSPunctDelimiter Fg
+  hi! link TSTagDelimiter AquaBold
+  "hi! link TSKeywordOperator OrangeBold
+  hi! link TSTag Blue
+  "hi! link TSTagDelimiter Blue
 
-  highlight! link htmlTSProperty Aqua
-  highlight! link htmlTSKeyword PurpleBold
-  "highlight! link typescriptDotNotation Fg
-  "highlight! link typescriptTypeAnnotation Fg
-  "highlight! link typescriptObjectColon Fg
-  "highlight! link typescriptDecorator PurpleItalic
-  "highlight! link typescriptObjectLabel Fg
-  highlight! link htmlTagName Aqua
-  highlight! link htmlTagN Blue
-  highlight! link htmlTag Blue
-  highlight! link htmlArg Blue
-  highlight link htmlTSString Green
+  hi! link htmlTSProperty Aqua
+  hi! link htmlTSKeyword PurpleBold
+  "hi! link typescriptDotNotation Fg
+  "hi! link typescriptTypeAnnotation Fg
+  "hi! link typescriptObjectColon Fg
+  "hi! link typescriptDecorator PurpleItalic
+  "hi! link typescriptObjectLabel Fg
+  hi! link htmlTagName Aqua
+  hi! link htmlTagN Blue
+  hi! link htmlTag Blue
+  hi! link htmlArg Blue
+  hi link htmlTSString Green
   " Initialize the color palette.
   " The first parameter is a valid value for `g:gruvbox_material_background`,
   " and the second parameter is a valid value for `g:gruvbox_material_palette`.

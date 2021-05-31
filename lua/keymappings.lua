@@ -180,7 +180,8 @@ if not vim.g.useLSP then
   function _G.smart_tab()
     return vim.fn.pumvisible() == 1 and vim.fn['coc#_select_confirm']()
        or vim.fn['coc#expandableOrJumpable']() and t'<C-r>'.. '=coc#rpc#request(\'doKeymap\', [\'snippets-expand-jump\',\'\'])'..t'<CR>'
-       or check_back_space() and t'<TAB>' or  vim.fn['coc#refresh']()
+       or t'<TAB>'
+       -- or check_back_space() and t'<TAB>' or  vim.fn['coc#refresh']()
   end
 end
 
