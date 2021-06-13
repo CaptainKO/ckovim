@@ -37,7 +37,7 @@ return require('packer').startup(function(use)
   -- Starter for choose recent projects
   use 'mhinz/vim-startify'
   -- Change Root
-  -- use 'airblade/vim-rooter'
+  use 'airblade/vim-rooter'
   -- Status/tabline
   use 'vim-airline/vim-airline'
   -- Harpoon
@@ -57,7 +57,7 @@ return require('packer').startup(function(use)
   -- Icons
   use {'kyazdani42/nvim-web-devicons', }
   --Plug 'majutsushi/tagbar'
-  use 'kyazdani42/nvim-tree.lua'
+  -- use 'kyazdani42/nvim-tree.lua'
 
   -- Plug 'preservim/nerdtree' |
   --     \ Plug 'Xuyuanp/nerdtree-git-plugin' |
@@ -131,14 +131,11 @@ return require('packer').startup(function(use)
   -- Plug 'HerringtonDarkholme/yats.vim'
   -- Git Support
   use 'tpope/vim-fugitive'
-  use {
-      'rbong/vim-flog',
-      requires = {{ 'tpope/vim-fugitive' }}
-  }
+  use { 'rbong/vim-flog' }
   use 'gisphm/vim-gitignore'
   use 'airblade/vim-gitgutter'
   -- Git Blame
-  use 'zivyangll/git-blame.vim'
+  -- use 'zivyangll/git-blame.vim'
   -- use 'APZelos/blamer.nvim'
 
   -- use 'stsewd/fzf-checkout.vim'
@@ -149,14 +146,8 @@ return require('packer').startup(function(use)
       'nvim-telescope/telescope.nvim',
       requires = { 'nvim-lua/popup.nvim', 'nvim-lua/plenary.nvim' }
   }
-  use {
-      'nvim-telescope/telescope-media-files.nvim',
-      -- requires = {{ 'nvim-telescope/telescope.nvim' }}
-  }
-  use {
-      'nvim-telescope/telescope-fzy-native.nvim',
-      -- requires = {{ 'nvim-telescope/telescope.nvim' }}
-  }
+  use { 'nvim-telescope/telescope-media-files.nvim' }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
   -- use 'svermeulen/vimpeccable'
   --Plug 'vwxyutarooo/nerdtree-devicons-syntax'
   -- Debugger
@@ -166,13 +157,7 @@ return require('packer').startup(function(use)
   -- Theme
   -- use {'dracula/vim',  as = 'dracula' }
   -- use 'gruvbox-community/gruvbox'
-  use {
-     'sainnhe/gruvbox-material',
-      --requires = {{
-          -- 'nvim-treesitter/nvim-treesitter',
-          -- 'sheerun/vim-polyglot',
-      --}},
-  }
+  use { 'sainnhe/gruvbox-material' }
 
   -- Tutorials
   -- use 'ThePrimeagen/vim-be-good'

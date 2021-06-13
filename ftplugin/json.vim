@@ -1,3 +1,3 @@
-augroup JsonToJsonc
-    autocmd! FileType json set filetype=jsonc
-augroup END
+" augroup JsonToJsonc
+"     autocmd! FileType json set filetype=jsonc
+" augroup END

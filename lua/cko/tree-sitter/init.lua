@@ -38,7 +38,8 @@ require'nvim-treesitter.configs'.setup {
     disable = false,
   },
   rainbow = {
-    enable = true,
+    enable = langs,
+    disable = { 'html' },
     extended = true,
     max_file_lines = 1000
   }

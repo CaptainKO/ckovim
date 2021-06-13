@@ -1,8 +1,14 @@
+local M = { }
 vim.g.mapleader =' '
 local bind_key = vim.api.nvim_set_keymap;
 local function t(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
+function M.toggle_tab()
+  vim.b.expandtab = vim.b.expandtab == false
+  print(vim.b.expandtab)
+end
+
 bind_key('n', '<Leader>bca', '<cmd>%bdelete|edit #|normal `" <CR>', {noremap =true})
 -- bind_key('i', '<C-BS>', t'<Z-w>', {noremap=true,silent=true})
 
@@ -13,6 +19,7 @@ bind_key('n', '<Leader>bca', '<cmd>%bdelete|edit #|normal `" <CR>', {noremap =tr
 -- bind_key('n', '<Leader>pw', ':Rg <C-R>=expand("<cword>")<CR><CR>', { noremap = true })
 -- bind_key('n', '<Leader>phw', ':h <C-R>=expand("<cword>")<CR><CR>', { noremap = true })
 bind_key('n', '<Leader>h', ':wincmd h<CR>', { noremap = true, silent = true })
+bind_key('n', '<Leader>hh', ':wincmd h<CR>', { noremap = true, silent = true })
 bind_key('n', '<Leader>j', ':wincmd j<CR>', { noremap = true, silent = true })
 bind_key('n', '<Leader>k', ':wincmd k<CR>', { noremap = true, silent = true })
 bind_key('n', '<Leader>l', ':wincmd l<CR>', { noremap = true, silent = true })
@@ -22,7 +29,8 @@ bind_key('t', '<Leader>j', '<C-\\><C-N><C-w>j', { noremap = true, silent = true 
 bind_key('t', '<Leader>k', '<C-\\><C-N><C-w>k', { noremap = true, silent = true })
 bind_key('t', '<Leader>l', '<C-\\><C-N><C-w>l', { noremap = true, silent = true })
 
-bind_key('n', '<Leader>u', ':UndoTreeShow<CR>', { noremap = true })
+-- bind_key('n', '<Leader>u', ':UndoTreeShow<CR>', { noremap = true })
+bind_key('n', '<Leader>ut', "<CMD>lua require('keymappings').toggle_tab()<CR>", { noremap = true })
 bind_key('n', '<Leader>pv', ':wincmd v<bar> :Ex <bar> :vertical resize 30 <CR>', { noremap = true })
 bind_key('n', '<Leader>ps', ':Rg<SPACE>', {noremap = true})
 bind_key('n', '<Leader><CR>', 'luafile ~/.config/nvim/init.lua <CR>', {noremap = true})
@@ -266,6 +274,7 @@ bind_key('', '<C-_>', 'gcc', {})
 bind_key('n', '<C-p>', [[<cmd> lua require('cko.telescope').git_files()<CR>]], {noremap = true})
 bind_key('n', '<Leader>pp', [[<cmd> lua require('cko.telescope').search_current_folders()<CR>]], {noremap = true})
 bind_key('n', '<Leader>fo', [[<cmd> lua require('telescope.builtin').oldfiles()<CR>]], {noremap = true})
+bind_key('n', '<Leader>fc', [[<cmd> lua require('cko.telescope').search_relative_files()<CR>]], {noremap = true})
 bind_key('n', '<Leader>ff', [[<cmd> lua require('cko.telescope').search_current_folders()<CR>]], {noremap = true})
 bind_key('n', '<Leader>fg', [[<cmd> lua require('telescope.builtin').grep_string()<CR>]], {noremap = true})
 bind_key('n', '<Leader>fw', [[<cmd> lua require('telescope.builtin').grep_string({search = vim.fn.expand("<cword>")})<CR>]], {noremap = true})
@@ -323,6 +332,7 @@ vim.cmd([[
   augroup END
 ]], false)
 
+return M
 -- vim.api.nvim_set_keymap('n', '<Leader>', [[]], {noremap = true})
 -- vim.api.nvim_set_keymap('n', '<Leader>', [[]], {noremap = true})
 -- vim.api.nvim_set_keymap('n', '<Leader>', [[]], {noremap = true})

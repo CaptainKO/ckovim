@@ -26,9 +26,11 @@ telescope.setup {
       }
     },
     extensions = {
-      fzy_native = {
-        override_generic_sorter = true,
-        override_file_sorter = true,
+      fzf = {
+        fuzzy = true,
+        override_generic_sorter = false, -- override the generic sorter
+        override_file_sorter = true,     -- override the file sorter
+        case_mode = "smart_case",
       },
       media_files = {
       -- filetypes whitelist
@@ -39,7 +41,7 @@ telescope.setup {
   }
 }
 
-telescope.load_extension('fzy_native')
+telescope.load_extension('fzf')
 telescope.load_extension('git_worktree')
 telescope.load_extension('media_files')
 
@@ -47,7 +49,7 @@ telescope.load_extension('media_files')
 local M = {}
 local lastFileType
 M.live_grep = function ()
-  require('nvim-web-devicons').setup()
+  -- require('nvim-web-devicons').setup()
   local opts = {
       vimgrep_arguments = {'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case'}
   }
@@ -64,12 +66,20 @@ M.live_grep = function ()
 end
 
 M.git_files = function ()
-    require('nvim-web-devicons').setup()
+    -- require('nvim-web-devicons').setup()
     builtin.git_files{ args = { '--no-hidden' } }
 end
 
+M.search_relative_files = function()
+    -- require('nvim-web-devicons').setup()
+    builtin.find_files({
+      prompt_title = "Current Folder",
+      cwd = vim.fn.expand('%:p:h'),
+      find_command = {'rg', '--files' ,'--iglob','!**/.git/**/*' ,'--ignore','--hidden'}
+    })
+end
 M.search_current_folders = function()
-    require('nvim-web-devicons').setup()
+    -- require('nvim-web-devicons').setup()
     builtin.find_files({
       prompt_title = "Current Folder",
       cwd = "./" ,
@@ -78,7 +88,7 @@ M.search_current_folders = function()
 end
 
 M.git_branches = function ()
-  require('nvim-web-devicons').setup()
+  -- require('nvim-web-devicons').setup()
   builtin.git_branches({ attach_mapping = function (_, map)
     map('i', '<c-d>', actions.git_delete_branch)
     map('n', '<c-d>', actions.git_delete_branch)
