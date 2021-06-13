@@ -14,16 +14,14 @@ end
 -- vim.g.ale_disable_lsp = true
 
 return require('packer').startup(function(use)
-  -- use 'easymotion/vim-easymotion'		--Quickly navigate in buffer
+  -- use 'easymotion/vim-easymotion'  --Quickly navigate in buffer
   -- Utility
-  -- auto load local .vimrc files
-  -- use 'krisajenkins/vim-projectlocal'
   -- Latex
   -- use ('lervag/vimtex')
   -- Resize
   -- use 'szw/vim-maximizer'
   -- Color hexan highlight
-  -- use { 'rrethy/vim-hexokinase',  run = 'make hexokinase' }
+  use { 'norcalli/nvim-colorizer.lua' }
   -- Auto indent
   use 'tpope/vim-sleuth'
   -- Indent Characters
@@ -63,11 +61,14 @@ return require('packer').startup(function(use)
   --     \ Plug 'Xuyuanp/nerdtree-git-plugin' |
   --     \ Plug 'scrooloose/nerdtree-project-plugin'
 
-  use { 'junegunn/fzf', run = fn['fzf#install']  }
-  use 'junegunn/fzf.vim'
+  -- use { 'junegunn/fzf', run = fn['fzf#install']  }
+  -- use 'junegunn/fzf.vim'
   use 'tpope/vim-dispatch'
   --Auto pairs for '(' '[' '{'
-  use 'jiangmiao/auto-pairs'
+  use {'windwp/nvim-autopairs', config = function ()
+    require('nvim-autopairs').setup();
+  end}
+  -- use 'jiangmiao/auto-pairs'
   -- Programming
   -- Syntax highlighting
   -- let g:polyglot_disabled = ['graphql', 'typescript', 'javascript']
@@ -106,7 +107,10 @@ return require('packer').startup(function(use)
   -- Quick type html
   use 'mattn/emmet-vim'
   -- Modifies tags
-  use 'AndrewRadev/tagalong.vim'
+  use { 'windwp/nvim-ts-autotag ', config = function ()
+    require('nvim-ts-autotag').setup()
+  end }
+  -- use 'AndrewRadev/tagalong.vim'
   -- Javascript
   -- Plug 'pangloss/vim-javascript'
   -- Typescript
@@ -124,9 +128,6 @@ return require('packer').startup(function(use)
   use 'tjdevries/astronauta.nvim'
   -- Database
   use { 'kristijanhusak/vim-dadbod-ui', requires = { 'tpope/vim-dadbod' }}
-  -- use 'martingms/vipsql'
-  -- Plug 'leafgarland/typescript-vim'
-  -- Plug 'peitalin/vim-jsx-typescript'
   -- Syntax supports
   -- Plug 'HerringtonDarkholme/yats.vim'
   -- Git Support
