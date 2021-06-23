@@ -23,14 +23,6 @@
   ],
   "html.format.wrapAttributes": "force-aligned",
 
-  /*"languageserver": {
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"]
-    }
-  },*/
-
   "Lua.diagnostics.globals": ["vim"],
   "Lua.hover.previewFields": 10000,
   "Lua.workspace.preloadFileSize": 1000,
@@ -49,6 +41,7 @@
   "json.format.enable": true,
   "yaml.format.enable": true,
   "yaml.format.proseWrap": "preserve",
+  "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
   "explorer.position": "right",
   "explorer.openAction.strategy": "previousWindow",
   "explorer.openAction.relativePath": true,
@@ -140,28 +133,4 @@
     "postgres",
     "postgresql"
   ]
-  /* "suggest.completionItemKindLabels": { */
-  /*   "variable": "\ufa88", */
-  /*   "constant": "\uf8ff", */
-  /*   "struct": "\ufb44", */
-  /*   "class": "\uf0e8", */
-  /*   "interface": "\ufa52", */
-  /*   "text": "\ue612", */
-  /*   "enum": "\uf435", */
-  /*   "enumMember": "\uf02b", */
-  /*   "color": "\ue22b", */
-  /*   "property": "\ufab6", */
-  /*   "field": "\uf93d", */
-  /*   "unit": "\uf475", */
-  /*   "file": "\uf471", */
-  /*   "value": "\uf8a3", */
-  /*   "event": "\ufacd", */
-  /*   "folder": "\uf115", */
-  /*   "keyword": "\uf893", */
-  /*   "snippet": "\uf64d", */
-  /*   "operator": "\uf915", */
-  /*   "reference": "\uf87a", */
-  /*   "typeParameter": "\uf278", */
-  /*   "default": "\uf29c" */
-  /* } */
 }

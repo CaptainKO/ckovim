@@ -43,6 +43,7 @@ telescope.setup {
 
 telescope.load_extension('fzf')
 telescope.load_extension('git_worktree')
+telescope.load_extension('coc')
 telescope.load_extension('media_files')
 
 

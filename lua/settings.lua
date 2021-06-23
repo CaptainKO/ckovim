@@ -33,8 +33,8 @@ vim.o.showmode = false
 vim.wo.cursorline = true
 vim.wo.number = true
 vim.wo.relativenumber = true
-vim.o.foldlevel = 4
-vim.o.foldlevelstart = 3
+-- vim.o.foldlevel = 4
+-- vim.o.foldlevelstart = 3
 
 -- vim.o.syntax = 'manual'
 -- vim.o.shellcmdflag='-ic'

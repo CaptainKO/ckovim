@@ -1,0 +1,20 @@
+snippet nce "Create entity class"
+import {Entity} from 'typeorm'
+
+@Entity()
+export class ${1:EntityName} {
+
+}
+endsnippet
+
+snippet ncr "Create Repostiroy class"
+
+import {EntityRepository} from 'typeorm'
+
+@EntityRepository(${2:Entity})
+export class ${1:EntityRepositoryName} extends Repostiroy<${2:Entity}> {
+
+}
+
+endsnippet
+

@@ -1,4 +1,6 @@
-nvim_lsp = require'lspconfig'
+local lspconfig = require'lspconfig'
+local lsp_util = lspconfig.util
+
 -- require'lspinstall'.setup()
 -- TODO figure out why this don't work
 vim.fn.sign_define(
@@ -18,25 +20,8 @@ vim.fn.sign_define(
     {texthl = "LspDiagnosticsSignInformation", text = "", numhl = "LspDiagnosticsSignInformation"}
 )
 
--- vim.cmd("nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>")
--- vim.cmd("nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>")
--- vim.cmd("nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>")
--- vim.cmd("nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>")
--- vim.cmd("nnoremap <silent> ca :Lspsaga code_action<CR>")
--- vim.cmd("nnoremap <silent> K :Lspsaga hover_doc<CR>")
--- -- vim.cmd('nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>')
--- vim.cmd("nnoremap <silent> <C-p> :Lspsaga diagnostic_jump_prev<CR>")
--- vim.cmd("nnoremap <silent> <C-n> :Lspsaga diagnostic_jump_next<CR>")
--- -- scroll down hover doc or scroll in definition preview
--- vim.cmd("nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>")
--- -- scroll up hover doc
--- vim.cmd("nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>")
--- vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')
-
--- Set Default Prefix.
--- Note: You can set a prefix per lsp server in the lv-globals.lua file
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
+vim.lsp.diagnostic.on_publish_diagnostics, {
     virtual_text = {
       prefix = "",
       spacing = 0,
@@ -74,79 +59,160 @@ vim.lsp.protocol.CompletionItemKind = {
     "   (Operator)",
     "   (TypeParameter)"
 }
-
-local function documentHighlight(client, bufnr)
-    -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
-        -- vim.api.nvim_exec( [[
-        --   ""hi LspReferenceRead cterm=bold ctermbg=red
-        --   ""hi LspReferenceText cterm=bold ctermbg=red
-        --   ""hi LspReferenceWrite cterm=bold ctermbg=red
-        --   ""hi LspDiagnosticsVirtualTextError cterm=bold ctermbg=red
-        --   ""hi LspDiagnosticsVirtualTextWarning cterm=bold ctermbg=orange
-        --   ""hi LspDiagnosticsVirtualTextInformation cterm=bold cter
-        --   ""hi LspDiagnosticsVirtualTextHint
-        --   ""augroup lsp_document_highlight
-        --     ""autocmd! * <buffer>
-        --     ""autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        --     ""autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-        --   ""augroup END
-      -- ]], false)
-    end
+function _G.dump(...)
+    local objects = vim.tbl_map(vim.inspect, {...})
+    print(unpack(objects))
 end
+require('cko.lsp.angular-lsp')
+require('cko.lsp.js-ts-lsp')
+require('cko.lsp.diagnosticls-lsp')
 
-local lsp_config = {}
-
-function lsp_config.common_on_attach(client, bufnr)
-    documentHighlight(client, bufnr)
-end
-
-function lsp_config.tsserver_on_attach(client, bufnr)
-    lsp_config.common_on_attach(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
-end
-
--- Use a loop to conveniently both setup defined servers
--- and map buffer local keybindings when the language server attaches
--- local servers = {"pyright", "tsserver"}
--- for _, lsp in ipairs(servers) do nvim_lsp[lsp].setup {on_attach = on_attach} end
-
-DATA_PATH = vim.fn.stdpath('data')
-local angular_config = require"lspinstall/util".extract_config("angularls")
-local angular_path = DATA_PATH .. "/lspinstall/angularls/node_modules"
-
-local angular_cmd = {
-  angular_path .. "/@angular/language-server/bin/ngserver",
-  "--stdio",
-  "--tsProbeLocations",
-  angular_path,
-  "--ngProbeLocations",
-  angular_path,
-}
-
-angular_config.default_config.cmd = angular_cmd;
-
-angular_config.default_config.on_new_config = function(new_config, new_root_dir)
-  new_config.cmd = angular_cmd
-end
-
-require'lspinstall/servers'.angularls = vim.tbl_extend('error', angular_config, {
-  install_script = [[
-    ! test -f package.json && npm init -y --scope=lspinstall || true
-    npm install typescript @angular/language-server@latest @angular/language-service@latest
-  ]],
-})
 local function setup_servers()
   require'lspinstall'.setup()
   local servers = require'lspinstall'.installed_servers()
   for _, server in pairs(servers) do
-    require'lspconfig'[server].setup{
-      on_attach = lsp_config.common_on_attach
-    }
+   local config = {}
+
+    if server == "angularls" then
+      config = {
+        root_dir= lsp_util.root_pattern("angular.json"),
+      }
+    end
+
+    if server == "tsserver" then
+      config = {
+        root_dir= lsp_util.root_pattern("tsconfig*.json"),
+      }
+    end
+
+    if server == "efm" then
+      -- Formatting via efm
+      local prettier = require "cko.lsp.efm.prettier"
+      local eslint = require "cko.lsp.efm.eslint"
+      local luafmt = require "cko.lsp.efm.luafmt"
+      local rustfmt = require "cko.lsp.efm.rustfmt"
+      -- local autopep = require "efm/autopep8"
+
+      local languages = {
+          lua = {luafmt},
+          typescript = {prettier, eslint},
+          javascript = {prettier, eslint},
+          typescriptreact = {prettier, eslint},
+          javascriptreact = {prettier, eslint},
+          yaml = {prettier},
+          json = {prettier},
+          -- html = {prettier},
+          scss = {prettier},
+          css = {prettier},
+          markdown = {prettier},
+          rust = {rustfmt}
+          -- python = {autopep}
+      }
+
+      config = {
+          root_dir = lspconfig.util.root_pattern(
+                "package.json",
+                ".eslintrc*",
+                "*prettierrc*"
+          ),
+---@diagnostic disable-next-line: undefined-global
+          filetypes = vim.tbl_keys(languages),
+          init_options = {documentFormatting = true, codeAction = true},
+          settings = {languages = languages, log_level = 1, log_file = '~/efm.log'},
+          -- on_attach = on_attach
+      }
+
+      dump(languages.typescript[1])
+      -- inspect(config)
+    end
+
+    if server == "diagnosticls" then
+      config = {
+        filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'css', 'scss', },
+        init_options = {
+          linters = {
+            eslint = {
+               command = './node_modules/.bin/eslint',
+               args = { '--stdin', '--stdin-filename', '%filepath', '--format', 'json' },
+               debounce = 100,
+               sourceName = 'eslint',
+               rootPatterns= {
+                ".eslintrc.js",
+                ".eslintrc.cjs",
+                ".eslintrc.yaml",
+                ".eslintrc.yml",
+                ".eslintrc.yml",
+                -- "package.json"
+              },
+               parseJson = {
+                 errorsRoot = '[0].messages',
+                 line = 'line',
+                 column = 'column',
+                 endLine = 'endLine',
+                 endColumn = 'endColumn',
+                 message = '[eslint] ${message} [${ruleId}]',
+                 security = 'severity'
+               },
+               securities = {
+                 [2] = 'error',
+                 [1] = 'warning'
+               }
+             },
+          },
+          filetypes = {
+            javascript = 'eslint',
+            javascriptreact = 'eslint',
+            typescript = 'eslint',
+            typescriptreact = 'eslint',
+            markdown = 'markdownlint',
+            pandoc = 'markdownlint'
+          },
+         formatters = {
+           -- prettierEslint = {
+           --   command = 'prettier-eslint',
+           --   args = { '--stdin' },
+           --   rootPatterns = { '.git' },
+           -- },
+           prettier = {
+              debounce = 100,
+              -- sourceName = 'prettier',
+              command = './node_modules/.bin/prettier',
+              args = { '--stdin-filepath', '%filename' },
+              rootPatterns = {
+                ".prettierrc",
+                ".prettierrc.json",
+                ".prettierrc.toml",
+                ".prettierrc.json",
+                ".prettierrc.yml",
+                ".prettierrc.yaml",
+                ".prettierrc.json5",
+                ".prettierrc.js",
+                ".prettierrc.cjs",
+                "prettier.config.js",
+                "prettier.config.cjs"
+             },
+           }
+         },
+         -- formatFiletypes = {
+         --    css = 'prettier',
+         --    javascript = 'prettierEslint',
+         --    javascriptreact = 'prettierEslint',
+         --    json = 'prettier',
+         --    scss = 'prettier',
+         --    typescript = 'prettier',
+         --    typescriptreact = 'prettierEslint'
+         --  }
+
+        }
+      }
+
+    end
+
+    lspconfig[server].setup(config)
+
   end
 end
 
-vim.lsp.set_log_level("debug")
 setup_servers()
 
 -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
@@ -155,4 +221,172 @@ require'lspinstall'.post_install_hook = function ()
   vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
 
-return lsp_config
+-- nvim_lsp.diagnosticls.setup{
+--   -- on_attach=custom_attach,
+--   filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'css', 'scss', 'markdown', 'pandoc' },
+--   init_options = {
+--     linters = {
+--       eslint = {
+--         command = './node_modules/eslint/bin/eslint',
+--         args= { "--stdin-filepath", "%filepath" },
+--          rootPatterns = { ".prettierrc",
+--         ".prettierrc.json",
+--         ".prettierrc.toml",
+--         ".prettierrc.json",
+--         ".prettierrc.yml",
+--         ".prettierrc.yaml",
+--         ".prettierrc.json5",
+--         ".prettierrc.js",
+--         ".prettierrc.cjs",
+--         "prettier.config.js",
+--         "prettier.config.cjs"
+--         },
+--         debounce = 100,
+--         args = { '--stdin', '--stdin-filename', '%filepath', '--format', 'json' },
+--         sourceName = 'eslint',
+--         parseJson = {
+--           errorsRoot = '[0].messages',
+--           line = 'line',
+--           column = 'column',
+--           endLine = 'endLine',
+--           endColumn = 'endColumn',
+--           message = '[eslint] ${message} [${ruleId}]',
+--           security = 'severity'
+--         },
+--         securities = {
+--           [2] = 'error',
+--           [1] = 'warning'
+--         }
+--       },
+--       markdownlint = {
+--         command = 'markdownlint',
+--         rootPatterns = { '.git' },
+--         isStderr = true,
+--         debounce = 100,
+--         args = { '--stdin' },
+--         offsetLine = 0,
+--         offsetColumn = 0,
+--         sourceName = 'markdownlint',
+--         securities = {
+--           undefined = 'hint'
+--         },
+--         formatLines = 1,
+--         formatPattern = {
+--           '^.*:(\\d+)\\s+(.*)$',
+--           {
+--             line = 1,
+--             column = -1,
+--             message = 2,
+--           }
+--         }
+--       }
+--     },
+--     filetypes = {
+--       javascript = 'eslint',
+--       javascriptreact = 'eslint',
+--       typescript = 'eslint',
+--       typescriptreact = 'eslint',
+--       markdown = 'markdownlint',
+--       pandoc = 'markdownlint'
+--     },
+--     formatters = {
+--       prettierEslint = {
+--         command = 'prettier-eslint',
+--         args = { '--stdin' },
+--         rootPatterns = { '.git' },
+--       },
+--       prettier = {
+--         command = 'prettier',
+--         args = { '--stdin-filepath', '%filename' }
+--       }
+--     },
+--     formatFiletypes = {
+--        css = 'prettier',
+--        javascript = 'prettierEslint',
+--        javascriptreact = 'prettierEslint',
+--        json = 'prettier',
+--        scss = 'prettier',
+--        typescript = 'prettierEslint',
+--        typescriptreact = 'prettierEslint'
+--     }
+--   }
+-- }
+-- -- require'lspinstall'.setup()
+-- -- for the last
+-- -- local function setup_servers()
+-- --   local servers = require'lspinstall'.installed_servers()
+-- --   for _, server in pairs(servers) do
+-- --     require'lspconfig'[server].setup{
+-- --       -- on_attach = lsp_config.common_on_attach
+-- --     }
+-- --   end
+-- -- end
+
+-- vim.lsp.set_log_level("debug")
+-- setup_servers()
+--
+---- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
+--require'lspinstall'.post_install_hook = function ()
+  --setup_servers() -- reload installed servers
+  --vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+--end
+--local lsp_config = {}
+--
+--function lsp_config.common_on_attach(client, bufnr)
+    --documentHighlight(client, bufnr)
+--end
+--
+--function lsp_config.tsserver_on_attach(client, bufnr)
+    --lsp_config.common_on_attach(client, bufnr)
+    --client.resolved_capabilities.document_formatting = false
+--end
+--
+---- Use a loop to conveniently both setup defined servers
+---- and map buffer local keybindings when the language server attaches
+---- local servers = {"pyright", "tsserver"}
+---- for _, lsp in ipairs(servers) do nvim_lsp[lsp].setup {on_attach = on_attach} end
+--
+--DATA_PATH = vim.fn.stdpath('data') local angular_config = require"lspinstall/util".extract_config("angularls")
+--local angular_path = DATA_PATH .. "/lspinstall/angularls/node_modules"
+--
+--local angular_cmd = {
+  --angular_path .. "/@angular/language-server/bin/ngserver",
+  --"--stdio",
+  --"--tsProbeLocations",
+  --angular_path,
+  --"--ngProbeLocations",
+  --angular_path,
+--}
+--
+--angular_config.default_config.cmd = angular_cmd;
+--
+--angular_config.default_config.on_new_config = function(new_config, new_root_dir)
+  --new_config.cmd = angular_cmd
+--end
+--
+--require'lspinstall/servers'.angularls = vim.tbl_extend('error', angular_config, {
+  --install_script = [[
+    --! test -f package.json && npm init -y --scope=lspinstall || true
+    --npm install typescript @angular/language-server@latest @angular/language-service@latest
+  --]],
+--})
+--local function setup_servers()
+  --require'lspinstall'.setup()
+  --local servers = require'lspinstall'.installed_servers()
+  --for _, server in pairs(servers) do
+    --require'lspconfig'[server].setup{
+      --on_attach = lsp_config.common_on_attach
+    --}
+  --end
+--end
+--
+--vim.lsp.set_log_level("debug")
+--setup_servers()
+--
+---- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
+--require'lspinstall'.post_install_hook = function ()
+  --setup_servers() -- reload installed servers
+  --vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
+--end
+--
+--return lsp_config

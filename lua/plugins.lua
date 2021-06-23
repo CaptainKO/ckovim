@@ -16,6 +16,8 @@ end
 return require('packer').startup(function(use)
   -- use 'easymotion/vim-easymotion'  --Quickly navigate in buffer
   -- Utility
+  -- auto load local .vimrc files
+  -- use 'krisajenkins/vim-projectlocal'
   -- Latex
   -- use ('lervag/vimtex')
   -- Resize
@@ -65,35 +67,40 @@ return require('packer').startup(function(use)
   -- use 'junegunn/fzf.vim'
   use 'tpope/vim-dispatch'
   --Auto pairs for '(' '[' '{'
-  use {'windwp/nvim-autopairs', config = function ()
-    require('nvim-autopairs').setup();
-  end}
-  -- use 'jiangmiao/auto-pairs'
+  -- use {'windwp/nvim-autopairs', config = function ()
+  --   require('nvim-autopairs').setup();
+  -- end}
+  use 'jiangmiao/auto-pairs'
   -- Programming
   -- Syntax highlighting
   -- let g:polyglot_disabled = ['graphql', 'typescript', 'javascript']
   --
-  -- use {'neovim/nvim-lspconfig'}
-  -- use {'kabouzeid/nvim-lspinstall'}
-  -- use {'hrsh7th/nvim-compe'}
+  if vim.g.use_lsp then
+    use {'neovim/nvim-lspconfig'}
+    use {'kabouzeid/nvim-lspinstall'}
+    use {'hrsh7th/vim-vsnip'}
+    -- use {'hrsh7th/nvim-compe'}
+    use {'glepnir/lspsaga.nvim'}
+    -- use 'prabirshrestha/vim-lsp'
+    -- use 'mattn/vim-lsp-settings'
+  end
   -- Snippets
   use {'honza/vim-snippets'}
-  -- use {'hrsh7th/vim-vsnip'}
-  -- use {'glepnir/lspsaga.nvim'}
   --
   -- use {'nvim-lua/completion-nvim'}
   -- Plug 'sheerun/vim-polyglot'
-  use { 'neoclide/coc.nvim', branch = 'release'}
   -- vim lsp
-  -- use 'prabirshrestha/vim-lsp'
-  -- use 'mattn/vim-lsp-settings'
+  if not vim.g.use_lsp then
+
+  end
+  use { 'neoclide/coc.nvim', branch = 'release'}
   -- golang
   use { 'fatih/vim-go', run = ':GoInstallBinaries' }
   -- dart
   -- use 'dart-lang/dart-vim-plugin'
 
   -- Document Generators
-  -- use {'kkoomen/vim-doge', run = fn['doge#install']  }
+  use {'kkoomen/vim-doge', run = fn['doge#install']  }
 
   -- Formatter
   -- use 'sbdchd/neoformat'
@@ -107,16 +114,16 @@ return require('packer').startup(function(use)
   -- Quick type html
   use 'mattn/emmet-vim'
   -- Modifies tags
-  use { 'windwp/nvim-ts-autotag ', config = function ()
-    require('nvim-ts-autotag').setup()
-  end }
+  -- use { 'windwp/nvim-ts-autotag ', config = function ()
+    -- require('nvim-ts-autotag').setup()
+  -- end }
   -- use 'AndrewRadev/tagalong.vim'
   -- Javascript
   -- Plug 'pangloss/vim-javascript'
   -- Typescript
   -- use 'HerringtonDarkholme/yats.vim'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}  -- We recommend updating the parsers on update
-  use { 'nvim-treesitter/playground', }  -- We recommend updating the parsers on update
+  -- use { 'nvim-treesitter/playground', }  -- We recommend updating the parsers on update
   use { 'p00f/nvim-ts-rainbow' }
   -- Angular
   use {
@@ -149,6 +156,7 @@ return require('packer').startup(function(use)
   }
   use { 'nvim-telescope/telescope-media-files.nvim' }
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
+  use 'fannheyward/telescope-coc.nvim'
   -- use 'svermeulen/vimpeccable'
   --Plug 'vwxyutarooo/nerdtree-devicons-syntax'
   -- Debugger

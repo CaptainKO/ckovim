@@ -21,11 +21,12 @@ require'nvim-treesitter.configs'.setup {
   ignore_install = { "rust" },
   highlight = {
     enable = true,              -- false will disable the whole extension
+    disable = { 'html' }
     -- enable = false,
   },
 
   incremental_selection = {
-  enable = true,
+    enable = true,
     keymaps = {
       init_selection = "gnn",
       node_incremental = "grn",
@@ -34,17 +35,21 @@ require'nvim-treesitter.configs'.setup {
     },
   },
   indent = {
-    -- enable = true,
-    disable = false,
+    enable = true,
+    -- disable = false,
+    -- disable = {'typescript'}
   },
   rainbow = {
     enable = langs,
     disable = { 'html' },
     extended = true,
     max_file_lines = 1000
-  }
+  },
+  -- autopairs = {
+  --   enable = true,
+  -- }
 }
 
-vim.cmd([[
-   set foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
-]])
+-- vim.cmd([[
+--    set foldmethod=expr foldexpr=nvim_treesitter#foldexpr()
+-- ]])

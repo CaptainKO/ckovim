@@ -1,1 +1,1 @@
-vim.o.syntax = "off"
+-- vim.o.syntax = "off"

@@ -1,4 +1,5 @@
 vim.g.use_lsp = false
+
 require'settings'
 require'keymappings'
 

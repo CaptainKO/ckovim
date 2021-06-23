@@ -71,7 +71,7 @@ bind_key('n', '<Leader>ha', '<cmd> lua require("harpoon.mark").add_file()<CR>', 
 bind_key('n', '<Leader>th', ':TSBufToggle highlight<CR>', {noremap = true, silent = true})
 
 -- Coc
-if not vim.g.useLSP then
+if not vim.g.use_lsp then
   bind_key('x', 'af', '<Plug>(coc-funcobj-a)', {})
   bind_key('o', 'af', '<Plug>(coc-funcobj-a)', {})
 
@@ -120,7 +120,7 @@ if not vim.g.useLSP then
   )
   bind_key('i', '<C-space>', '<cmd>call coc#refresh()<CR>', {noremap = true, silent = true})
   bind_key('n', '<Leader>prw', '<cmd>CocSearch <C-R>=expand("<cword>")<CR><CR>', { noremap = true })
-  bind_key('n', '<Leader>cr', '<cmd>CocRestart<CR>', { noremap = true })
+  bind_key('n', '<Leader><Leader>cr', '<cmd>CocRestart<CR>', { noremap = true })
   bind_key('n', 'K', ':call Show_documentation()<CR>', { noremap = true, nowait = true })
 
   vim.cmd([[
@@ -159,7 +159,6 @@ if not vim.g.useLSP then
     local hasScroll = vim.fn['coc#float#has_scroll']()
     return hasScroll == 1 and t('<c-r>')..'=coc#float#scroll(0)'..t('<cr>') or t('<Left>')
   end
-  bind_key('n', '<C-n>', '<cmd>CocCommand explorer <CR>', { noremap = true,  nowait = true})
 
 
   -- Coc scroll inside popup
@@ -192,8 +191,9 @@ if not vim.g.useLSP then
        -- or check_back_space() and t'<TAB>' or  vim.fn['coc#refresh']()
   end
 end
+bind_key('n', '<C-n>', '<cmd>CocCommand explorer <CR>', { noremap = true,  nowait = true})
 
-if vim.g.useLSP then
+if vim.g.use_lsp then
    bind_key('n', '<leader><leader>f', "<cmd>lua vim.lsp.buf.formatting()<CR>", {noremap = true })
    bind_key('v', '<leader><leader>f', "<cmd>lua vim.lsp.buf.range_formatting()<CR>", {noremap = true})
    -- bind_key('n', '<leader>ac', "<cmd>lua vim.lsp.buf.code_action()<CR>", {noremap = true})
@@ -243,7 +243,7 @@ if vim.g.useLSP then
 
   -- lsp saga
   bind_key('n', '<leader>ac', "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", {noremap=true, silent = true})
-  bind_key('v', '<leader>ac', "<cmd>lua require('lspsaga.codeaction').code_range_action()<CR>", {noremap=true, silent = true})
+  bind_key('v', '<leader>ac', "<cmd>lua require('lspsaga.codeaction').range_code_action()<CR>", {noremap=true, silent = true})
   bind_key('n', '<leader>rr', "<cmd>lua require('lspsaga.rename').rename()<CR>", {noremap=true, silent = true})
 
 end -- endif lsp
@@ -272,6 +272,7 @@ bind_key('', '<C-_>', 'gcc', {})
 -- vim.api.nvim_set_keymap('n', '<Leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<CR>]], {noremap = true})
 -- vim.api.nvim_set_keymap('n', '<C-p>', [[<cmd> lua require('telescope.builtin').git_files()<CR>]], {noremap = true})
 bind_key('n', '<C-p>', [[<cmd> lua require('cko.telescope').git_files()<CR>]], {noremap = true})
+bind_key('n', '<Leader><C-p>', [[<cmd> lua require('telescope.builtin').git_commits()<CR>]], {noremap = true})
 bind_key('n', '<Leader>pp', [[<cmd> lua require('cko.telescope').search_current_folders()<CR>]], {noremap = true})
 bind_key('n', '<Leader>fo', [[<cmd> lua require('telescope.builtin').oldfiles()<CR>]], {noremap = true})
 bind_key('n', '<Leader>fc', [[<cmd> lua require('cko.telescope').search_relative_files()<CR>]], {noremap = true})
@@ -285,7 +286,19 @@ bind_key('n', '<Leader>ww', [[<cmd> lua require('telescope').extensions.git_work
 bind_key('n', '<Leader>wc', [[<cmd> lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>]], {noremap = true})
 bind_key('n', '<Leader>fs', [[<cmd> lua require('telescope.builtin').git_status()<CR>]], {noremap = true})
 
-bind_key('n', '<Leader>gb', [[<cmd> lua require('cko.telescope').git_branches()<CR>]], {noremap = true})
+if not vim.g.use_lsp
+then
+  bind_key('n', '<Leader>gb', [[<cmd> lua require('cko.telescope').git_branches()<CR>]], {noremap = true})
+  bind_key('n', '<Leader>cr', [[<cmd> Telescope coc references<CR>]], {noremap = true})
+  bind_key('n', '<Leader>cdf', [[<cmd> Telescope coc definitions<CR>]], {noremap = true})
+  bind_key('n', '<Leader>cde', [[<cmd> Telescope coc declarations<CR>]], {noremap = true})
+  bind_key('n', '<Leader>ci', [[<cmd> lua require('telescope').extensions.coc.implementations()<CR>]], {noremap = true})
+  bind_key('n', '<Leader>cf', [[<cmd> lua require('telescope').extensions.coc.file_code_actions()<CR>]], {noremap = true})
+  bind_key('n', '<Leader>cl', [[<cmd> lua require('telescope').extensions.coc.line_code_actions()<CR>]], {noremap = true})
+  bind_key('n', '<Leader>csw', [[<cmd> Telescope coc workspace_symbols<CR>]], {noremap = true})
+  bind_key('n', '<Leader>csd', [[<cmd> <CR>]], {noremap = true})
+end
+
 
 -- VimSpector
 bind_key('n', '<Leader>dd', [[<cmd> lua vim.fn['vimspector#Launch']() <CR>]], {noremap = true})

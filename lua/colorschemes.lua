@@ -14,8 +14,8 @@ function! Gruvbox_material_custom() abort
   "highlight! link TSKeyword OrangeBold
   hi! link VirtualTextError Red
   hi! link VirtualTextWarning Yellow
-  hi! link VirtualTextHint Aqua
-  hi! link VirtualTextInfo Grey
+  hi! link VirtualTextHint AquaBold
+  hi! link VirtualTextInfo Aqua
   hi! link TSTag AquaBold
   "hi! link TSPunctDelimiter Fg
   hi! link TSTagDelimiter AquaBold
