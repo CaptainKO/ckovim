@@ -1,18 +1,17 @@
 snippet nce "Create entity class"
-import {Entity} from 'typeorm'
+import { Entity } from 'typeorm'
 
 @Entity()
-export class ${1:EntityName} {
+export class ${1:EntityName}Entity {
 
 }
 endsnippet
 
-snippet ncr "Create Repostiroy class"
-
-import {EntityRepository} from 'typeorm'
+snippet ncr "Create Repository class"
+import { EntityRepository, Repository } from 'typeorm'
 
 @EntityRepository(${2:Entity})
-export class ${1:EntityRepositoryName} extends Repostiroy<${2:Entity}> {
+export class ${1:EntityRepositoryName}Repository extends Repository<${2:Entity}> {
 
 }
 

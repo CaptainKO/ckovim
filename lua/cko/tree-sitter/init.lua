@@ -12,6 +12,7 @@ local langs = {
     'typescript',
     'go',
     'gomod',
+    'graphql',
     'comment'
 }
 
@@ -21,7 +22,7 @@ require'nvim-treesitter.configs'.setup {
   ignore_install = { "rust" },
   highlight = {
     enable = true,              -- false will disable the whole extension
-    disable = { 'html' }
+    -- disable = { 'html' }
     -- enable = false,
   },
 

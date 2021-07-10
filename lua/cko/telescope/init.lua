@@ -6,7 +6,9 @@ local builtin = require('telescope.builtin')
 
 telescope.setup {
   defaults = {
-    prompt_position = 'top',
+    layout_config = {
+      prompt_position = 'top',
+    },
     sorting_strategy = "ascending",
     file_ignore_patterns = {"node_modules", "dist"},
     file_sorter = sorters.get_fzy_sorter,

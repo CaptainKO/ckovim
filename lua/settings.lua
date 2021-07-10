@@ -24,7 +24,6 @@ vim.o.softtabstop = 2
 vim.o.autoindent = true
 vim.o.shiftwidth = 2
 vim.o.tabstop = 2
-vim.w.tabstop = 2
 vim.o.swapfile = false
 vim.o.syntax = 'on'
 vim.o.wrap = false

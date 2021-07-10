@@ -1,20 +1,21 @@
 local M = { }
 vim.g.mapleader =' '
 local bind_key = vim.api.nvim_set_keymap;
+
 local function t(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
+
 function M.toggle_tab()
   vim.b.expandtab = vim.b.expandtab == false
-  print(vim.b.expandtab)
 end
 
-bind_key('n', '<Leader>bca', '<cmd>%bdelete|edit #|normal `" <CR>', {noremap =true})
--- bind_key('i', '<C-BS>', t'<Z-w>', {noremap=true,silent=true})
+bind_key('n', '<Leader>bca', '<cmd>%bdelete|edit #|normal `" <CR>', { noremap = true })
+bind_key('i', '<C-BS>', '<C-w>', { noremap=true, silent=true })
 
--- bind_key('n', '<Leader>ss', ':%s//g<Left><Left>', { noremap = true })
+bind_key('n', '<Leader>ss', ':%s/<c-r><c-w>//gc<Left><Left><Left>', { noremap = true })
 
--- bind_key('n', '<Leader>S', 'yiw:%s/\\<<C-r>"\\>//g<Left><Left>"', { noremap = true })
+bind_key('n', '<Leader>S', ':%s/\\<<c-r><c-w>/>//g<Left><Left>', { noremap = true })
 
 -- bind_key('n', '<Leader>pw', ':Rg <C-R>=expand("<cword>")<CR><CR>', { noremap = true })
 -- bind_key('n', '<Leader>phw', ':h <C-R>=expand("<cword>")<CR><CR>', { noremap = true })
@@ -85,22 +86,22 @@ if not vim.g.use_lsp then
   bind_key('o', 'ic', '<Plug>(coc-classobj-i)', {})
 
   bind_key('n', 'go', '<cmd>CocList outline<CR>', {})
-  bind_key('n', '<Leader>go', '<cmd>CocList outline<CR>', {})
+  -- bind_key('n', '<Leader>go', '<cmd>CocList outline<CR>', {})
 
   bind_key('n', 'gd', '<Plug>(coc-definition)', {})
-  bind_key('n', '<Leader>gd', '<Plug>(coc-definition)', {})
+  -- bind_key('n', '<Leader>gd', '<Plug>(coc-definition)', {})
 
   bind_key('n', 'gy', '<Plug>(coc-type-definition)', {})
-  bind_key('n', '<Leader>gy', '<Plug>(coc-type-definition)', {})
+  -- bind_key('n', '<Leader>gy', '<Plug>(coc-type-definition)', {})
 
   bind_key('n', 'gi', '<Plug>(coc-implementation)', {})
-  bind_key('n', '<Leader>gi', '<Plug>(coc-implementation)', {})
+  -- bind_key('n', '<Leader>gi', '<Plug>(coc-implementation)', {})
 
   bind_key('n', 'gr', '<Plug>(coc-references)', {})
-  bind_key('n', '<Leader>gr', '<Plug>(coc-references)', {})
+  -- bind_key('n', '<Leader>gr', '<Plug>(coc-references)', {})
 
   bind_key('n', 'gl', '<Plug>(coc-references)', {})
-  bind_key('n', '<Leader>gl', '<Plug>(coc-references)', {})
+  -- bind_key('n', '<Leader>gl', '<Plug>(coc-references)', {})
 
   bind_key('n', '<Leader>rr', '<Plug>(coc-rename)', {})
   bind_key('n', '<Leader>F2', '<Plug>(coc-rename)', {})
@@ -255,8 +256,8 @@ bind_key('n', '<Leader>gs', ':G<CR>', {})
 bind_key('n', '<Leader>gp', ':G push<CR>', {})
 -- vim.api.nvim_set_keymap('n', '<Leader>gb', ':GBranches<CR>', { noremap = true })
 bind_key('n', '<Leader>gr', ':G rebase -i<CR>', { noremap = true })
-bind_key('n', '<Leader>gsp', ':G stash pop', {noremap = true })
-bind_key('n', '<Leader>gss', ':G stash', { noremap = true })
+bind_key('n', '<Leader>gsp', ':G stash pop<CR>', {noremap = true })
+bind_key('n', '<Leader>gss', ':G stash<CR>', { noremap = true })
 -- Git Blame
 bind_key('n', '<Leader><C-u>', ':call gitblame#echo()<CR>', { noremap = true })
 
@@ -296,7 +297,7 @@ then
   bind_key('n', '<Leader>cf', [[<cmd> lua require('telescope').extensions.coc.file_code_actions()<CR>]], {noremap = true})
   bind_key('n', '<Leader>cl', [[<cmd> lua require('telescope').extensions.coc.line_code_actions()<CR>]], {noremap = true})
   bind_key('n', '<Leader>csw', [[<cmd> Telescope coc workspace_symbols<CR>]], {noremap = true})
-  bind_key('n', '<Leader>csd', [[<cmd> <CR>]], {noremap = true})
+  bind_key('n', '<Leader>csd', [[<cmd> Telescope coc document_symbols <CR>]], {noremap = true})
 end
 
 

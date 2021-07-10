@@ -1,5 +1,12 @@
 {
   "npm.binPath": "npm",
+  "languageserver": {
+    "graphql": {
+      "command": "graphql-lsp",
+      "args": ["server", "-m", "stream"],
+      "filetypes": ["graphql", "gql"]
+    }
+  },
   "python.linting.enabled": true,
   "python.formatting.provider": "yapf",
   "python.formatting.yapfPath": "~/.local/bin/yapf",
@@ -34,13 +41,22 @@
     "typescript",
     "javascript"
   ],
+  "jsdoc.formatter": "tsdoc",
+  "jsdoc.enableFileAction": true,
   "typescript.preferences.quoteStyle": "auto",
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": true,
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": false,
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "deno.lint": true,
   "json.format.enable": true,
   "yaml.format.enable": true,
   "yaml.format.proseWrap": "preserve",
+  "yaml.schemas": {
+    "https://unpkg.com/graphql-config@3.3.0/config-schema.json": [
+      ".graphqlrc.yaml",
+      ".graphql.yml"
+    ]
+  },
   "snippets.userSnippetsDirectory": "~/.config/nvim/snips",
   "explorer.position": "right",
   "explorer.openAction.strategy": "previousWindow",
@@ -129,8 +145,5 @@
     "<<": "gitStage",
     ">>": "gitUnstage"
   },
-  "cSpell.userWords": [
-    "postgres",
-    "postgresql"
-  ]
+  "cSpell.userWords": ["postgres", "postgresql", "tsdoc"]
 }

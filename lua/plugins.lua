@@ -75,6 +75,7 @@ return require('packer').startup(function(use)
   -- Syntax highlighting
   -- let g:polyglot_disabled = ['graphql', 'typescript', 'javascript']
   --
+  use 'jparise/vim-graphql'
   if vim.g.use_lsp then
     use {'neovim/nvim-lspconfig'}
     use {'kabouzeid/nvim-lspinstall'}
@@ -90,10 +91,11 @@ return require('packer').startup(function(use)
   -- use {'nvim-lua/completion-nvim'}
   -- Plug 'sheerun/vim-polyglot'
   -- vim lsp
-  if not vim.g.use_lsp then
+  -- if not vim.g.use_lsp then
 
-  end
+  -- end
   use { 'neoclide/coc.nvim', branch = 'release'}
+  use {'yaegassy/coc-jsdoc', run= 'yarn install --frozen-lockfile'}
   -- golang
   use { 'fatih/vim-go', run = ':GoInstallBinaries' }
   -- dart
@@ -117,18 +119,17 @@ return require('packer').startup(function(use)
   -- use { 'windwp/nvim-ts-autotag ', config = function ()
     -- require('nvim-ts-autotag').setup()
   -- end }
-  -- use 'AndrewRadev/tagalong.vim'
+  use 'AndrewRadev/tagalong.vim'
   -- Javascript
   -- Plug 'pangloss/vim-javascript'
   -- Typescript
+  use {'FuDesign2008/json2ts.vim', run = 'npm install'  }
   -- use 'HerringtonDarkholme/yats.vim'
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}  -- We recommend updating the parsers on update
   -- use { 'nvim-treesitter/playground', }  -- We recommend updating the parsers on update
   use { 'p00f/nvim-ts-rainbow' }
   -- Angular
-  use {
-      'nvim-treesitter/nvim-treesitter-angular'
-  }
+  use { 'nvim-treesitter/nvim-treesitter-angular' }
   -- Lua
   use 'tjdevries/nlua.nvim'
   -- AutoLoad lua files
