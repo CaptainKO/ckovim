@@ -116,9 +116,11 @@ return require('packer').startup(function(use)
   -- Quick type html
   use 'mattn/emmet-vim'
   -- Modifies tags
-  -- use { 'windwp/nvim-ts-autotag ', config = function ()
-    -- require('nvim-ts-autotag').setup()
-  -- end }
+  -- use { 'windwp/nvim-ts-autotag',
+  --   config = function ()
+  --     require('nvim-ts-autotag').setup()
+  --   end
+  -- }
   use 'AndrewRadev/tagalong.vim'
   -- Javascript
   -- Plug 'pangloss/vim-javascript'
@@ -164,6 +166,8 @@ return require('packer').startup(function(use)
   use 'puremourning/vimspector'
 
 
+  --
+  use 'chr4/nginx.vim'
   -- Theme
   -- use {'dracula/vim',  as = 'dracula' }
   -- use 'gruvbox-community/gruvbox'

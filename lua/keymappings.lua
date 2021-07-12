@@ -15,7 +15,7 @@ bind_key('i', '<C-BS>', '<C-w>', { noremap=true, silent=true })
 
 bind_key('n', '<Leader>ss', ':%s/<c-r><c-w>//gc<Left><Left><Left>', { noremap = true })
 
-bind_key('n', '<Leader>S', ':%s/\\<<c-r><c-w>/>//g<Left><Left>', { noremap = true })
+bind_key('n', '<Leader>S', ':%s/\\<<c-r><c-w>\\>//g<Left><Left>', { noremap = true })
 
 -- bind_key('n', '<Leader>pw', ':Rg <C-R>=expand("<cword>")<CR><CR>', { noremap = true })
 -- bind_key('n', '<Leader>phw', ':h <C-R>=expand("<cword>")<CR><CR>', { noremap = true })
@@ -347,6 +347,7 @@ vim.cmd([[
 ]], false)
 
 return M
+
 -- vim.api.nvim_set_keymap('n', '<Leader>', [[]], {noremap = true})
 -- vim.api.nvim_set_keymap('n', '<Leader>', [[]], {noremap = true})
 -- vim.api.nvim_set_keymap('n', '<Leader>', [[]], {noremap = true})
